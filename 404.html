@@ -11,6 +11,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
+            /* Ensure body takes full viewport height */
+            margin: 0;
+            background-color: #222;
+            /* Or match your site's background */
         }
 
         /* New container for the video and the button */
@@ -50,9 +55,11 @@
             background-color: mintcream;
             color: black;
             border: 7px solid rgb(30, 83, 35);
-            border-radius: 5px;
+            border-radius: 15px;
+            /* Changed to 15px for consistency with video-container */
             font-family: "DOSfont", sans-serif;
-            font-size: 2em;
+            font-size: 2.5em;
+            /* Adjusted font size for better visibility */
             cursor: pointer;
             transition: background-color 0.2s;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
@@ -64,7 +71,9 @@
 
         .play-button:hover {
             background-color: rgb(45, 110, 50);
-
+            /* Darker green on hover */
+            color: mintcream;
+            /* Change text color on hover for contrast */
         }
     </style>
 </head>
@@ -73,21 +82,23 @@
     <div class="video-container">
         <iframe id="rickrollPlayer"
             src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&modestbranding=1&rel=0&start=43&enablejsapi=1"
-            title="Huh. How did you end up here? And how can you even read this?" frameborder="0"
+            title="Huh. How did you end up here? And how can you even read this?"
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-        <!-- The button itself now acts as the overlay -->
         <button id="playButton" class="play-button">404 Page not found - Click to Continue</button>
     </div>
 
     <script>
         var player;
+        const videoId = 'dQw4w9WgXcQ';
+        const startTime = 43; // Start time in seconds
+
         // This function is called when the YouTube IFrame Player API is ready
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('rickrollPlayer', {
                 events: {
-                    'onReady': onPlayerReady // Call onPlayerReady when the player is ready
+                    'onReady': onPlayerReady
                 }
             });
         }
@@ -100,11 +111,44 @@
 
         // Add an event listener directly to the button
         document.getElementById('playButton').addEventListener('click', function () {
-            if (player) {
-                player.unMute(); // Unmute the video
-                player.playVideo(); // Start playing the video
-                this.style.display = 'none'; // Hide the button itself
-            }
+            this.style.display = 'none'; // Hide the button immediately
+
+            // Attempt to open the YouTube app using a deep link
+            // For iOS: youtube://watch?v=VIDEO_ID
+            // For Android: vnd.youtube://watch?v=VIDEO_ID
+            // A universal link or standard mobile web link often handles this best.
+            const youtubeDeepLink = `youtube://watch?v=${videoId}&t=${startTime}s`;
+            const youtubeMobileWebLink = `https://m.youtube.com/watch?v=${videoId}&t=${startTime}s`;
+
+            let appLaunchAttempted = false;
+
+            // Try to open the deep link
+            window.location.href = youtubeDeepLink;
+            appLaunchAttempted = true;
+
+            // Set a timeout to check if the app launched
+            const appLaunchTimeout = setTimeout(() => {
+                // If the page is still visible (i.e., the app didn't launch or user didn't switch)
+                if (!document.hidden) {
+                    // Fallback: Play the embedded video
+                    if (player) {
+                        player.unMute();
+                        player.playVideo();
+                    } else {
+                        // If player isn't ready for some reason, open in mobile web browser
+                        window.open(youtubeMobileWebLink, '_blank');
+                    }
+                }
+            }, 1500); // Give 1.5 seconds for the app to launch
+
+            // Listen for visibility change to detect if the user left the page (app launched)
+            const visibilityChangeHandler = () => {
+                if (document.hidden) {
+                    clearTimeout(appLaunchTimeout); // Clear timeout if app launched successfully
+                    document.removeEventListener('visibilitychange', visibilityChangeHandler);
+                }
+            };
+            document.addEventListener('visibilitychange', visibilityChangeHandler);
         });
 
         // Load the IFrame Player API code asynchronously.
