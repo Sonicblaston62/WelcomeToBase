@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Tells the browser this is an HTML5 document -->
+    <meta charset="UTF-8"> <!-- Sets character encoding so text displays correctly -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes site responsive on mobile -->
+    <title>Welcome to Base!</title> <!-- Title shown in browser tab -->
+    <link rel="stylesheet" href="stylesheet.css"> <!-- Links to external CSS file -->
+</head>
+
+<body>
+    <!-- Main content area -->
+    <main class="content-wrapper">
+
+        <!-- Navigation buttons/links -->
+        <div class="container">
+            <a href="portfolio.html" class="button">Portfolio</a>
+            <a href="about.html" class="button">About</a>
+            <a href="other.html" class="button">Art</a>
+            <a href="another.html" class="button">Another</a>
+        </div>
+
+        <!-- Welcome section -->
+        <div class="Box">
+            <h1>Welcome to my Basecamp!</h1>
+            <h2>I am Kevin and this is my site</h2>
+            <div class="Pixelart">
+                <!-- Example image -->
+                <img src="images/SonicblastonNESWaveanimated.gif" alt="Sonic blast">
+            </div>
+        </div>
+        <!-- Chicken game button -->
+        <div id="chickenButton" class="chicken-button" title="Play Chicken Game"></div>
+
+        <!-- Social media links -->
+        <div class="AnotherBox">
+            <div class="social-media">
+                <a href="https://discordapp.com/users/1275781404361228352" class="social-link">
+                    <img src="images/DicordIcon.webp" alt="Social Media 1">
+                </a>
+                <a href="https://www.coolmathgames.com/0-learn-to-fly-2" class="social-link">
+                    <img src="images/FacebookIcon.webp" alt="Social Media 2">
+                </a>
+                <a href="https://classic.minecraft.net/" class="social-link">
+                    <img src="images/Instagram.webp" alt="Social Media 3">
+                </a>
+                <a href="https://www.youtube.com/@Sonicblaston" class="social-link">
+                    <img src="images/YouTubeIcon.webp" alt="Social Media 4">
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Portfolio popup window (hidden by default) -->
+    <div id="portfolioWindow" class="window-box" style="display: none;">
+        <div class="window-banner">
+            <img src="images/SonicblastonNES (2).png" alt="Sonicblaston" class="window-banner-image">
+        </div>
+        <div class="window-header">
+            <div class="header-content">
+                <span class="window-title">Portfolio</span>
+            </div>
+            <button class="close-button">&times;</button> <!-- Close button -->
+        </div>
+        <div class="window-content">
+            <h2>I made this stuff!</h2>
+
+            <!-- First project -->
+            <div class="portfolio-item">
+                <div class="portfolio-info">
+                    <h3>Minecraft console Website</h3>
+                    <h4 class="project-description">This is the first website I ever made! It is designed to look like
+                        the old console editions of minecraft</h4>
+                    <a href="https://sonicblaston62.github.io/Minecraft4J/index.html">Visit Project</a>
+                </div>
+                <div class="portfolio-image">
+                    <img src="images/MinecraftSite.webp" alt="Project 1">
+                </div>
+            </div>
+
+            <!-- Second project -->
+            <div class="portfolio-item">
+                <div class="portfolio-info">
+                    <h3>Super Mario Arcade</h3>
+                    <h4 class="project-description">My first take on recreating a game in another engine. It was
+                        programmed in Typescript in Makecode Arcade </h4>
+                    <a href="https://arcade.makecode.com/S36711-93516-36574-13189">Visit Project</a>
+                </div>
+                <div class="portfolio-image">
+                    <img src="images/Super_Mario_Arcade.webp" alt="Project 2">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About popup window -->
+    <div id="aboutWindow" class="window-box" style="display: none;">
+        <div class="window-banner">
+            <img src="images/SonicblastonNES (2).png" alt="Sonic blast" class="window-banner-image">
+        </div>
+        <div class="window-header">
+            <div class="header-content">
+                <span class="window-title">About</span>
+            </div>
+            <button class="close-button">&times;</button>
+        </div>
+        <div class="window-content">
+            <h2>About Me</h2>
+            <h3>Hello!</h3>
+            <h4>My name is Kevin. I'm a second year IT student from Norway. I am interested in Web and game-development.
+            </h4>
+            <h4>I have been creating small games and demos for four years now. I really enjoy designing and programming.
+            </h4>
+        </div>
+    </div>
+
+    <!-- Art popup window -->
+    <div id="artWindow" class="window-box" style="display: none;">
+        <div class="window-banner">
+            <img src="images/SonicblastonNES (2).png" alt="Sonic blast" class="window-banner-image">
+        </div>
+        <div class="window-header">
+            <div class="header-content">
+                <span class="window-title">Art</span>
+            </div>
+            <button class="close-button">&times;</button>
+        </div>
+        <div class="window-content">
+            <h2>My Art Gallery</h2>
+
+            <div class="portfolio-item">
+                <div class="portfolio-info">
+                    <h3>Michael View</h3>
+                    <h4 class="project-description">A character I drew for a friend.</h4>
+                </div>
+                <div class="gallery-image">
+                    <img src="images/Michael_View_Portrait.png" alt="Project 1" class="scale-100">
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-info">
+                    <h3>Blaston</h3>
+                    <h4 class="project-description">The little guy you've been seeing around the site. His name is
+                        Blaston </h4>
+                </div>
+                <div class="gallery-image">
+                    <img src="images/SonicblastonNES1.png" alt="Project 2">
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-info">
+                    <h3>The Amazing Digital Circus!</h3>
+                    <h4 class="project-description">This is the Amazing Digital Circus if it was an EGA graphics game
+                        in MS-DOS </h4>
+                </div>
+                <div class="gallery-image">
+                    <img src="images/TADC.png" alt="Project 2">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Another popup window -->
+    <div id="anotherWindow" class="window-box" style="display: none;">
+        <div class="window-banner">
+            <img src="images/SonicblastonNES (2).png" alt="Sonic blast" class="window-banner-image">
+        </div>
+        <div class="window-header">
+            <div class="header-content">
+                <span class="window-title">Another</span>
+            </div>
+            <button class="close-button">&times;</button>
+        </div>
+        <div class="window-content">
+            <h2>Another Section</h2>
+        </div>
+    </div>
+
+    <!-- Chicken Game popup window -->
+    <div id="chickenWindow" class="window-box" style="display: none;">
+        <div class="window-banner">
+            <img src="images/SonicblastonNES (2).png" alt="Sonic blast" class="window-banner-image">
+        </div>
+        <div class="window-header">
+            <div class="header-content">
+                <h3>Chicken Game</h3>
+            </div>
+            <button class="close-button">&times;</button>
+        </div>
+        <div class="window-content" style="padding: 0; overflow: hidden;">
+            <!-- The game will load inside this iframe -->
+            <iframe src="chicken/game.html" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+    </div>
+
+    <!-- Image viewer popup (opens when gallery images are clicked) -->
+    <div id="imageViewerWindow" class="window-box image-viewer" style="display: none;">
+        <div class="window-banner">
+            <img src="images/SonicblastonNES (2).png" alt="A character called Sonicblaston" class="window-banner-image">
+        </div>
+        <div class="window-header">
+            <div class="header-content">
+                <span class="window-title">Image</span>
+            </div>
+            <button class="close-button">&times;</button>
+        </div>
+        <div class="window-content">
+            <img id="viewerImage" src="" alt="" />
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
