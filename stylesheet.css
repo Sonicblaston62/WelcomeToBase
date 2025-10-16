@@ -230,7 +230,6 @@ img {
     max-height: 310px;
     overflow-y: auto;
     overflow-x: hidden;
-    scrollbar-color: rgb(30, 83, 35) mintcream;
     scrollbar-width: thin;
 }
 
