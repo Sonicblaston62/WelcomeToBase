@@ -396,7 +396,7 @@ img {
 }
 
 .chicken-button:hover {
-    background-image: url('chicken/assets/chicken.png');
+    background-image: url('chicken/assets/Chicken.png');
     /* Image on hover */
 }
 
@@ -575,4 +575,5 @@ img {
         gap: 10px;
         margin-bottom: 15px;
     }
+
 }
