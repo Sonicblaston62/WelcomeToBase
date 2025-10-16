@@ -29,10 +29,10 @@ const config = {
 const game = new Phaser.Game(config);
 
 function preload() {
-    this.load.image('chicken', 'assets/chicken.png');
+    this.load.image('chicken', 'assets/Chicken.png');
     this.load.image('egglaying', 'assets/egglaying.png');
-    this.load.image('egg', 'assets/egg.png');
-    this.load.image('chick', 'assets/chick.png');
+    this.load.image('egg', 'assets/Egg.png');
+    this.load.image('chick', 'assets/Chick.png');
     this.load.spritesheet('hatching', 'assets/hatching.png', {
         frameWidth: 16,
         frameHeight: 16
