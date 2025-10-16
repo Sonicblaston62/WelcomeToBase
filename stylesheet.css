@@ -1,18 +1,24 @@
 /* === General Page Styles === */
+html,
+body {
+    /* Add html to ensure full height */
+    height: 100%;
+    /* Ensure both html and body take full height of the viewport */
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-image: url('Images/Bliss.webp');
     background-size: cover;
     background-attachment: fixed;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
+    /* min-height: 100vh; - Removed as height: 100% on html and body handles this */
     font-family: "DOSfont", sans-serif;
     overflow: auto;
     /* Changed from hidden to auto for better responsiveness across all sizes */
     -webkit-font-smoothing: none;
-    /* font-smooth: none; Removed, less widely supported */
     text-rendering: optimizeSpeed;
 }
 
@@ -403,10 +409,7 @@ img {
 
 /* === Responsive Adjustments for Tablets and Smaller Screens (e.g., max-width: 768px) === */
 @media screen and (max-width: 768px) {
-    body {
-        /* overflow: auto; removed as it's now global */
-        background-size: auto 100vh;
-    }
+
 
     .container {
         grid-template-columns: repeat(2, 1fr);
@@ -440,6 +443,9 @@ img {
 
     .AnotherBox {
         margin-top: 20px;
+        position: relative;
+        bottom: -10vh;
+
     }
 
     .window-box {
@@ -479,8 +485,8 @@ img {
         padding-top: 5px;
         margin-bottom: 1px;
         width: 100%;
-        /* 100% of the padded body */
         box-sizing: border-box;
+        font-size: 22px;
     }
 
     .button {
@@ -493,7 +499,7 @@ img {
     }
 
     .Box {
-        width: 98%;
+        width: 95%;
         /* Adjusted to account for body padding */
         height: 80vw;
         padding: 5px;
@@ -510,15 +516,15 @@ img {
 
     .Pixelart img {
         scale: 2;
-        bottom: -80px;
-        right: -200px;
+        bottom: -75px;
+        right: -320px;
     }
 
     .chicken-button {
         scale: 3;
         margin-left: -200px;
         margin-top: 10px;
-        margin-bottom: -50px;
+        margin-bottom: -60px;
     }
 
     .social-media {
@@ -527,13 +533,13 @@ img {
     }
 
     .social-link img {
-        width: 60px;
+        width: 55px;
         height: auto;
         scale: 100%;
     }
 
     .AnotherBox {
-        width: 98%;
+        width: 93%;
         /* Adjusted to account for body padding */
         height: 80px;
         /* Reverted to original height for better spacing */
