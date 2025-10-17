@@ -16,7 +16,7 @@
         /* New container for the video and the button */
         .video-container {
             position: relative;
-            border: 7px solid rgb(30, 83, 35);
+            border: 7px solid #3B77BC;
             border-radius: 15px;
             overflow: hidden;
             max-width: 800px;
@@ -35,21 +35,18 @@
             border: none;
         }
 
-        /* Styles for the large play button that covers the video */
         .play-button {
             position: absolute;
-            /* Position it over the iframe */
             top: 0;
             left: 0;
             width: 100%;
-            /* Make it cover the entire video container */
             height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: mintcream;
+            background-color: #ffffff;
             color: black;
-            border: 7px solid rgb(30, 83, 35);
+            border: 7px solid #3B77BC;
             border-radius: 5px;
             font-family: "DOSfont", sans-serif;
             font-size: 2em;
@@ -63,7 +60,7 @@
         }
 
         .play-button:hover {
-            background-color: rgb(45, 110, 50);
+            background-color: #d3e5fa;
 
         }
     </style>
@@ -84,17 +81,7 @@
         var player;
         // This function is called when the YouTube IFrame Player API is ready
         function onYouTubeIframeAPIReady() {
-            player = new YT.Player('rickrollPlayer', {
-                events: {
-                    'onReady': onPlayerReady // Call onPlayerReady when the player is ready
-                }
-            });
-        }
-
-        // This function executes once the video player is ready
-        function onPlayerReady(event) {
-            // Video will not autoplay or be muted initially.
-            // It will wait for the button click.
+            player = new YT.Player('rickrollPlayer', {});
         }
 
         // Add an event listener directly to the button
