@@ -38,8 +38,8 @@ body {
     margin: 20px auto;
     width: 550px;
     height: 400px;
-    background-color: mintcream;
-    border: 5px solid rgb(30, 83, 35);
+    background-color: #ffffff;
+    border: 5px solid #3B77BC;
     border-radius: 10px;
     box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.338);
     text-align: center;
@@ -52,8 +52,8 @@ body {
     margin: 150px auto;
     width: 550px;
     height: 80px;
-    background-color: mintcream;
-    border: 5px solid rgb(30, 83, 35);
+    background-color: #ffffff;
+    border: 5px solid #3B77BC;
     border-radius: 10px;
     box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.338);
     text-align: center;
@@ -96,8 +96,8 @@ img {
     font-family: "DOSfont", sans-serif;
     width: 150px;
     height: 80px;
-    background-color: mintcream;
-    border: 5px solid rgb(30, 83, 35);
+    background-color: #ffffff;
+    border: 5px solid #3B77BC;
     border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
@@ -110,7 +110,7 @@ img {
 }
 
 .button:hover {
-    background-color: rgb(66, 124, 82);
+    background-color: #d3e5fa;
 }
 
 /* === Wrapper for All Content === */
@@ -126,8 +126,8 @@ img {
     position: fixed;
     width: 550px;
     height: 400px;
-    background-color: mintcream;
-    border: 5px solid rgb(30, 83, 35);
+    background-color: #ffffff;
+    border: 5px solid #3B77BC;
     border-radius: 10px;
     box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.338);
     top: 50%;
@@ -138,17 +138,15 @@ img {
 }
 
 #chickenWindow.window-box {
-    height: 500px;
-    overflow: hidden !important;
-}
-
-#chickenWindow .window-content {
-    padding: 0 !important;
-    /* Corrected typo from 100 to 0 */
-    overflow: hidden !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 600px;
+    width: 450px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    user-select: none;
+    border: 5px solid #3B77BC;
+    background-color: #ffffff;
 }
 
 /* --- Bigger custom image viewer window (covers more of the screen, not full-screen) --- */
@@ -202,7 +200,7 @@ img {
 /* === Window Header (Draggable Bar) === */
 .window-header {
     padding: 10px;
-    background-color: rgb(30, 83, 35);
+    background-color: #3B77BC;
     color: white;
     cursor: move;
     display: flex;
@@ -241,18 +239,18 @@ img {
 }
 
 .window-content::-webkit-scrollbar-track {
-    background: mintcream;
+    background: #ffffff;
     border-radius: 10px;
 }
 
 .window-content::-webkit-scrollbar-thumb {
-    background-color: rgb(30, 83, 35);
+    background-color: #3B77BC;
     border-radius: 10px;
-    border: 3px solid mintcream;
+    border: 3px solid #ffffff;
 }
 
 .window-content::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(45, 110, 50);
+    background-color: #d3e5fa;
 }
 
 /* Prevents text from wrapping in Box headings */
@@ -295,11 +293,11 @@ img {
 
 .portfolio-info h3 {
     margin: 0;
-    color: rgb(30, 83, 35);
+    color: #3B77BC;
 }
 
 .portfolio-info a {
-    color: rgb(66, 124, 82);
+    color: #3B77BC;
     text-decoration: none;
 }
 
@@ -383,7 +381,7 @@ img {
     cursor: pointer;
     width: 21px;
     height: 17px;
-    background-image: url('chicken/assets/Chicken.gif');
+    background-image: url('Images/Chicken.gif');
     /* Default image */
     background-size: contain;
     background-repeat: no-repeat;
@@ -401,7 +399,7 @@ img {
 }
 
 .chicken-button:hover {
-    background-image: url('chicken/assets/Chicken.png');
+    background-image: url('Images/Chicken.png');
     /* Image on hover */
 }
 
