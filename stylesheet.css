@@ -60,7 +60,6 @@ img {
     image-rendering: -webkit-optimize-contrast;
     /* For Edge 79+ */
     image-rendering: pixelated;
-    image-rendering: crisp-edges;
     -ms-interpolation-mode: nearest-neighbor;
 }
 
@@ -234,9 +233,9 @@ img {
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-scrollbar-width: thin;
-    /* For Chrome, Safari, and Opera */
     scrollbar-width: thin;
-}
+    /* For Chrome, Safari, and Opera */
+}how to make all external links open in new tab in html css
 
 /* === Scrollbar Styling === */
 .window-content::-webkit-scrollbar {
@@ -394,9 +393,8 @@ img {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
     image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
     -ms-interpolation-mode: nearest-neighbor;
     scale: 4;
     transform-origin: center;
