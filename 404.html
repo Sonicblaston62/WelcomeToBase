@@ -13,7 +13,7 @@
             align-items: center;
         }
 
-        /* New container for the video and the button */
+        /* Video Container */
         .video-container {
             position: relative;
             border: 7px solid #3B77BC;
@@ -30,11 +30,11 @@
 
         .video-container iframe {
             width: 100%;
-            /* Fill the container */
             height: 100%;
             border: none;
         }
 
+        /* Play Button */
         .play-button {
             position: absolute;
             top: 0;
@@ -79,20 +79,20 @@
 
     <script>
         var player;
-        // This function is called when the YouTube IFrame Player API is ready
+        // YouTube IFrame Player API Ready
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('rickrollPlayer', {});
         }
 
-        // Add an event listener directly to the button
+        // Play Button Event Listener
         document.getElementById('playButton').addEventListener('click', function () {
             if (player) {
-                player.playVideo(); // Start playing the video
-                this.style.display = 'none'; // Hide the button itself
+                player.playVideo();
+                this.style.display = 'none';
             }
         });
 
-        // Load the IFrame Player API code asynchronously.
+        // Load YouTube IFrame Player API
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];

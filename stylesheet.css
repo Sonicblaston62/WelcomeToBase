@@ -1,9 +1,7 @@
 /* === General Page Styles === */
 html,
 body {
-    /* Add html to ensure full height */
     height: 100%;
-    /* Ensure both html and body take full height of the viewport */
     margin: 0;
     padding: 0;
 }
@@ -14,10 +12,8 @@ body {
     background-attachment: fixed;
     background-position: center center;
     background-repeat: no-repeat;
-    /* min-height: 100vh; - Removed as height: 100% on html and body handles this */
     font-family: "DOSfont", sans-serif;
     overflow: auto;
-    /* Changed from hidden to auto for better responsiveness across all sizes */
     -webkit-font-smoothing: none;
     text-rendering: optimizeSpeed;
 }
@@ -59,13 +55,13 @@ body {
     text-align: center;
 }
 
-/* === General Image Styling (apply pixel-rendering globally, specific positioning moved to .Pixelart img) === */
+/* === General Image Styling === */
 img {
-    /* Apply pixel rendering to all images by default */
+    image-rendering: -webkit-optimize-contrast;
+    /* For Edge 79+ */
     image-rendering: pixelated;
     image-rendering: crisp-edges;
     -ms-interpolation-mode: nearest-neighbor;
-    /* Removed specific positioning and scale from global img */
 }
 
 /* === Pixel Art Image Styling (for tadc.png) === */
@@ -75,14 +71,12 @@ img {
     height: fit-content;
 }
 
-/* Explicitly target the image inside Pixelart for its specific positioning and scale */
 .Pixelart img {
     position: absolute;
     bottom: -85px;
     right: -510px;
     scale: 300%;
     transform-origin: bottom right;
-    /* image-rendering properties are inherited from global img */
 }
 
 /* === Custom Font Import === */
@@ -134,6 +128,12 @@ img {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE 10+/Edge */
     user-select: none;
 }
 
@@ -144,12 +144,18 @@ img {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE 10+/Edge */
     user-select: none;
     border: 5px solid #3B77BC;
     background-color: #ffffff;
 }
 
-/* --- Bigger custom image viewer window (covers more of the screen, not full-screen) --- */
+/* === Image Viewer Window === */
 .window-box.image-viewer {
     width: min(1200px, 95vw);
     height: min(840px, 92vh);
@@ -190,7 +196,6 @@ img {
     object-fit: contain;
     transform: none !important;
     scale: 1 !important;
-    /* image-rendering properties are inherited from global img */
 }
 
 .window-box.image-viewer.opening {
@@ -228,11 +233,12 @@ img {
     max-height: 310px;
     overflow-y: auto;
     overflow-x: hidden;
+    -webkit-scrollbar-width: thin;
+    /* For Chrome, Safari, and Opera */
     scrollbar-width: thin;
 }
 
-/* style scrollbars inside windows to match window colors */
-/* WebKit browsers */
+/* === Scrollbar Styling === */
 .window-content::-webkit-scrollbar {
     width: 12px;
     height: 12px;
@@ -253,13 +259,12 @@ img {
     background-color: #d3e5fa;
 }
 
-/* Prevents text from wrapping in Box headings */
+/* === Text Wrapping === */
 .Box h1,
 .Box h2 {
     white-space: pre;
 }
 
-/* Makes text wrap properly inside windows */
 .window-content h2,
 .window-content h3,
 .window-content p {
@@ -269,8 +274,14 @@ img {
     max-width: 100%;
 }
 
-/* Class applied when dragging a window */
+/* === Dragging Class === */
 .dragging {
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE 10+/Edge */
     user-select: none;
     cursor: grabbing !important;
 }
@@ -305,7 +316,7 @@ img {
     text-decoration: underline;
 }
 
-/* Portfolio images */
+/* === Portfolio Images === */
 .portfolio-image img {
     position: static;
     width: 100%;
@@ -313,10 +324,9 @@ img {
     scale: 100%;
     border-radius: 5px;
     box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.2);
-    /* image-rendering properties are inherited from global img */
 }
 
-/* Project description text */
+/* === Project Description Text === */
 .project-description {
     margin: 8px 0;
     font-size: 0.9em;
@@ -328,7 +338,7 @@ img {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 30px;
+    padding: 0px;
 }
 
 .social-link img {
@@ -336,8 +346,10 @@ img {
     height: 40px;
     position: static;
     scale: 150%;
-    transition: transform 0.2s;
-    /* image-rendering properties are inherited from global img */
+}
+
+.social-link:hover {
+    scale: 110%;
 }
 
 /* === Window Icon === */
@@ -346,10 +358,9 @@ img {
     height: fit-content;
     position: static;
     scale: 300%;
-    /* image-rendering properties are inherited from global img */
 }
 
-/* === Window Banner (small image in header) === */
+/* === Window Banner === */
 .window-banner {
     position: absolute;
     top: -71px;
@@ -361,7 +372,6 @@ img {
 .window-banner-image {
     position: static;
     scale: 300%;
-    /* image-rendering properties are inherited from global img */
 }
 
 /* === Gallery Images === */
@@ -372,7 +382,6 @@ img {
     scale: 90%;
     border-radius: 5px;
     box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.2);
-    /* image-rendering properties are inherited from global img */
 }
 
 /* === Chicken Game Button === */
@@ -382,13 +391,12 @@ img {
     width: 21px;
     height: 17px;
     background-image: url('Images/Chicken.gif');
-    /* Default image */
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     image-rendering: pixelated;
-    /* Ensure pixelated rendering */
     image-rendering: crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
     -ms-interpolation-mode: nearest-neighbor;
     scale: 4;
     transform-origin: center;
@@ -400,11 +408,10 @@ img {
 
 .chicken-button:hover {
     background-image: url('Images/Chicken.png');
-    /* Image on hover */
 }
 
 
-/* === Responsive Adjustments for Tablets and Smaller Screens (e.g., max-width: 768px) === */
+/* === code for tablet version of website === */
 @media screen and (max-width: 768px) {
 
 
@@ -469,7 +476,7 @@ img {
     }
 }
 
-/* === Responsive Adjustments for Phones (e.g., max-width: 480px) === */
+/* === Code for phone view of website === */
 @media screen and (max-width: 480px) {
     body {
         padding: 0 8px;
@@ -490,14 +497,12 @@ img {
         width: auto;
         padding: 5px 8px;
         font-size: 0.8em;
-        /* Adjusted for better fit */
         height: 40px;
         border-width: 4px;
     }
 
     .Box {
         width: 95%;
-        /* Adjusted to account for body padding */
         height: 80vw;
         padding: 5px;
         margin: 20px auto;
@@ -526,7 +531,7 @@ img {
 
     .social-media {
         flex-wrap: wrap;
-        padding: 0px;
+        padding: -50px;
     }
 
     .social-link img {
@@ -537,9 +542,7 @@ img {
 
     .AnotherBox {
         width: 93%;
-        /* Adjusted to account for body padding */
         height: 80px;
-        /* Reverted to original height for better spacing */
         margin: 10px auto;
         padding: 5px;
     }
