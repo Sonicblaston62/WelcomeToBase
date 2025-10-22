@@ -176,7 +176,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px;
+    padding: 0px;
     width: 100%;
     height: calc(100% - 56px);
     max-height: none;
