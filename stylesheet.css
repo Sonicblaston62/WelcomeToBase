@@ -233,9 +233,9 @@ img {
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-scrollbar-width: thin;
-    scrollbar-width: thin;
     /* For Chrome, Safari, and Opera */
-}how to make all external links open in new tab in html css
+    scrollbar-width: thin;
+}
 
 /* === Scrollbar Styling === */
 .window-content::-webkit-scrollbar {
@@ -320,6 +320,7 @@ img {
     position: static;
     width: 100%;
     height: auto;
+    image-rendering: initial;
     scale: 100%;
     border-radius: 5px;
     box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.2);
@@ -362,7 +363,7 @@ img {
 /* === Window Banner === */
 .window-banner {
     position: absolute;
-    top: -71px;
+    top: -66px;
     left: 80%;
     transform: translateX(-50%);
     z-index: 999;
