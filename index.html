@@ -1,222 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Sets character encoding so text displays correctly -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Makes site responsive on mobile -->
+    <title>Welcome to Base!</title>
+    <!-- Title shown in browser tab -->
+    <link rel="stylesheet" href="stylesheet.css" />
+    <!-- Links to external CSS file -->
+    <link rel="icon" href="Images/Sonicblaston.ico" />
+  </head>
 
-<head>
-    <meta charset="UTF-8"> <!-- Sets character encoding so text displays correctly -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes site responsive on mobile -->
-    <title>Welcome to Base!</title> <!-- Title shown in browser tab -->
-    <link rel="stylesheet" href="stylesheet.css"> <!-- Links to external CSS file -->
-    <link rel="icon" href="Images/Sonicblaston.ico"
-</head>
-
-<body>
+  <body>
     <!-- Main content area -->
     <main class="content-wrapper">
+      <!-- Navigation buttons/links -->
+      <div class="container">
+        <a href="portfolio.html" class="button">Portfolio</a>
+        <a href="about.html" class="button">About</a>
+        <a href="other.html" class="button">Art</a>
+        <a href="another.html" class="button">Another</a>
+      </div>
 
-        <!-- Navigation buttons/links -->
-        <div class="container">
-            <a href="portfolio.html" class="button">Portfolio</a>
-            <a href="about.html" class="button">About</a>
-            <a href="other.html" class="button">Art</a>
-            <a href="another.html" class="button">Another</a>
+      <!-- Welcome section -->
+      <div class="Box">
+        <h1>Welcome to Base!</h1>
+        <h2>I am Kevin and this is my site</h2>
+        <div class="Pixelart">
+          <!-- Example image -->
+          <img src="Images/SonicblastonNESWaveanimated.gif" alt="Sonic blast" />
         </div>
+      </div>
+      <!-- Chicken game button -->
+      <div
+        id="chickenButton"
+        class="chicken-button"
+        title="Play Chicken Game"
+      ></div>
 
-        <!-- Welcome section -->
-        <div class="Box">
-            <h1>Welcome to Base!</h1>
-            <h2>I am Kevin and this is my site</h2>
-            <div class="Pixelart">
-                <!-- Example image -->
-                <img src="Images/SonicblastonNESWaveanimated.gif" alt="Sonicblaston">
-            </div>
+      <!-- Social media links -->
+      <div class="AnotherBox">
+        <div class="social-media">
+          <a
+            href="https://discordapp.com/users/1275781404361228352"
+            class="social-link"
+          >
+            <img src="Images/DicordIcon.png" alt="Discord" />
+          </a>
+          <a
+            href="https://www.coolmathgames.com/0-learn-to-fly-2"
+            class="social-link"
+          >
+            <img src="Images/github.png" alt="github" />
+          </a>
+          <a
+            href="https://forum.makecode.com/u/sonicblaston/summary"
+            class="social-link"
+          >
+            <img src="Images/logo.png" alt="Makecode forum" />
+          </a>
+          <a href="https://www.youtube.com/@Sonicblaston" class="social-link">
+            <img src="Images/YouTubeIcon.png" alt="Youtube" />
+          </a>
         </div>
-        <!-- Chicken game button -->
-        <div id="chickenButton" class="chicken-button" title="Play Chicken Game"></div>
-
-
+      </div>
+    </main>
 
     <!-- Portfolio popup window -->
-    <div id="portfolioWindow" class="window-box" style="display: none;">
-        <div class="window-banner">
-            <img src="Images/SonicblastonNES (2).png" alt="Sonicblaston" class="window-banner-image">
+    <div id="portfolioWindow" class="window-box" style="display: none">
+      <div class="window-banner">
+        <img
+          src="Images/SonicblastonNES (2).png"
+          alt="Sonicblaston"
+          class="window-banner-image"
+        />
+      </div>
+      <div class="window-header">
+        <div class="header-content">
+          <span class="window-title">Portfolio</span>
         </div>
-        <div class="window-header">
-            <div class="header-content">
-                <span class="window-title">Portfolio</span>
-            </div>
-            <button class="close-button">&times;</button> <!-- Close button -->
-        </div>
-        <div class="window-content">
-            <h2>I made this stuff!</h2>
+        <button class="close-button">[X]</button>
+        <!-- Close button -->
+      </div>
+      <div class="window-content">
+        <h2>I made this stuff!</h2>
 
-            <!-- First project -->
-            <div class="portfolio-item">
-                <div class="portfolio-info">
-                    <h3>Minecraft console Website</h3>
-                    <h4 class="project-description">This is the first website I ever made! It is designed to look like
-                        the old console editions of minecraft</h4>
-                    <a href="https://sonicblaston62.github.io/Minecraft4J/index.html">Visit Project</a>
-                </div>
-                <div class="portfolio-image">
-                    <img src="Images/MinecraftSite.webp" alt="MinecraftSite">
-                </div>
-            </div>
-
-            <!-- Second project -->
-            <div class="portfolio-item">
-                <div class="portfolio-info">
-                    <h3>Super Mario Arcade</h3>
-                    <h4 class="project-description">My first take on recreating a game in another engine. It was
-                        programmed in Typescript in Makecode Arcade </h4>
-                    <a href="https://arcade.makecode.com/S36711-93516-36574-13189">Visit Project</a>
-                </div>
-                <div class="portfolio-image">
-                    <img src="Images/Super_Mario_Arcade.webp" alt="Super Mario Arcade">
-                </div>
-            </div>
+        <!-- First project -->
+        <div class="portfolio-item">
+          <div class="portfolio-info">
+            <h3>Minecraft console Website</h3>
+            <h4 class="project-description">
+              This is the first website I ever made! It is designed to look like
+              the old console editions of minecraft
+            </h4>
+            <a href="https://sonicblaston62.github.io/Minecraft4J/index.html"
+              >Visit Project</a
+            >
+          </div>
+          <div class="portfolio-image">
+            <img src="Images/MinecraftSite.webp" alt="Project 1" />
+          </div>
         </div>
+
+        <!-- Second project -->
+        <div class="portfolio-item">
+          <div class="portfolio-info">
+            <h3>Super Mario Arcade</h3>
+            <h4 class="project-description">
+              My first take on recreating a game in another engine. It was
+              programmed in Typescript in Makecode Arcade
+            </h4>
+            <a href="https://arcade.makecode.com/S36711-93516-36574-13189"
+              >Visit Project</a
+            >
+          </div>
+          <div class="portfolio-image">
+            <img
+              src="Images/Super_Mario_Arcade.webp"
+              alt="Super Mario Arcade"
+            />
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- About popup window -->
-    <div id="aboutWindow" class="window-box" style="display: none;">
-        <div class="window-banner">
-            <img src="Images/SonicblastonNES (2).png" alt="Sonicblaston" class="window-banner-image">
+    <div id="aboutWindow" class="window-box" style="display: none">
+      <div class="window-banner">
+        <img
+          src="Images/SonicblastonNES (2).png"
+          alt="Sonic blast"
+          class="window-banner-image"
+        />
+      </div>
+      <div class="window-header">
+        <div class="header-content">
+          <span class="window-title">About</span>
         </div>
-        <div class="window-header">
-            <div class="header-content">
-                <span class="window-title">About</span>
-            </div>
-            <button class="close-button">&times;</button>
-        </div>
-        <div class="window-content">
-            <h2>About Me</h2>
-            <h3>Hello!</h3>
-            <h4>My name is Kevin. I'm a second year IT student from Norway. I am interested in Web and game-development.
-            </h4>
-            <h4>I have been creating small games and demos for four years now. I really enjoy designing and programming.
-            </h4>
-        </div>
+        <button class="close-button">[X]</button>
+      </div>
+      <div class="window-content">
+        <h2>About Me</h2>
+        <h3>Hello!</h3>
+        <h4>
+          My name is Kevin. I'm a second year IT student from Norway. I am
+          interested in Web and game-development.
+        </h4>
+        <h4>
+          I have been creating small games and demos for four years now. I
+          really enjoy designing and programming.
+        </h4>
+      </div>
     </div>
 
     <!-- Art popup window -->
-    <div id="artWindow" class="window-box" style="display: none;">
-        <div class="window-banner">
-            <img src="Images/SonicblastonNES (2).png" alt="Sonicblast" class="window-banner-image">
+    <div id="artWindow" class="window-box" style="display: none">
+      <div class="window-banner">
+        <img
+          src="Images/SonicblastonNES (2).png"
+          alt="Sonic blast"
+          class="window-banner-image"
+        />
+      </div>
+      <div class="window-header">
+        <div class="header-content">
+          <span class="window-title">Art</span>
         </div>
-        <div class="window-header">
-            <div class="header-content">
-                <span class="window-title">Art</span>
-            </div>
-            <button class="close-button">&times;</button>
-        </div>
-        <div class="window-content">
-            <h2>My Art Gallery</h2>
+        <button class="close-button">[X]</button>
+      </div>
+      <div class="window-content">
+        <h2>My Art Gallery</h2>
 
-            <div class="portfolio-item">
-                <div class="portfolio-info">
-                    <h3>Michael View</h3>
-                    <h4 class="project-description">A character I drew for a friend.</h4>
-                </div>
-                <div class="gallery-image">
-                    <img src="Images/Michael_View_Portrait.png" alt="Michael View" >
-                </div>
-            </div>
-
-            <div class="portfolio-item">
-                <div class="portfolio-info">
-                    <h3>Blaston</h3>
-                    <h4 class="project-description">The little guy you've been seeing around the site. His name is
-                        Blaston </h4>
-                </div>
-                <div class="gallery-image">
-                    <img src="Images/SonicblastonNES1.png" alt="Sonicblaston">
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-info">
-                    <h3>The Amazing Digital Circus!</h3>
-                    <h4 class="project-description">This is the Amazing Digital Circus if it was an EGA graphics game
-                        in MS-DOS </h4>
-                </div>
-                <div class="gallery-image">
-                    <img src="Images/TADC.png" alt="The Amazing Digital Circus" style="image-rendering: initial;">
-                </div>
-            </div>
+        <div class="portfolio-item">
+          <div class="portfolio-info">
+            <h3>Michael View</h3>
+            <h4 class="project-description">
+              A character I drew for a friend.
+            </h4>
+          </div>
+          <div class="gallery-image">
+            <img
+              src="Images/Michael_View_Portrait.png"
+              alt="Project 1"
+              class="scale-100"
+            />
+          </div>
         </div>
+
+        <div class="portfolio-item">
+          <div class="portfolio-info">
+            <h3>Blaston</h3>
+            <h4 class="project-description">
+              The little guy you've been seeing around the site. His name is
+              Blaston
+            </h4>
+          </div>
+          <div class="gallery-image">
+            <img src="Images/SonicblastonNES1.png" alt="Project 2" />
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-info">
+            <h3>The Amazing Digital Circus!</h3>
+            <h4 class="project-description">
+              This is the Amazing Digital Circus if it was an EGA graphics game
+              in MS-DOS
+            </h4>
+          </div>
+          <div class="gallery-image">
+            <img
+              src="Images/TADC.png"
+              alt="Project 2"
+              style="image-rendering: initial"
+            />
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Another popup window -->
-    <div id="anotherWindow" class="window-box" style="display: none;">
-        <div class="window-banner">
-            <img src="Images/SonicblastonNES (2).png" alt="Sonicblaston" class="window-banner-image">
+    <div id="anotherWindow" class="window-box" style="display: none">
+      <div class="window-banner">
+        <img
+          src="Images/SonicblastonNES (2).png"
+          alt="Sonic blast"
+          class="window-banner-image"
+        />
+      </div>
+      <div class="window-header">
+        <div class="header-content">
+          <span class="window-title">Another</span>
         </div>
-        <div class="window-header">
-            <div class="header-content">
-                <span class="window-title">Another</span>
-            </div>
-            <button class="close-button">&times;</button>
-        </div>
-        <div class="window-content">
-            <h2>Another Section</h2>
-        </div>
+        <button class="close-button">[X]</button>
+      </div>
+      <div class="window-content">
+        <h2>Another Section</h2>
+      </div>
     </div>
 
     <!-- Chicken Game popup window -->
-    <div id="chickenWindow" class="window-box" style="display: none;">
-        <div class="window-banner">
-            <img src="Images/SonicblastonNES (2).png" alt="Sonicblaston" class="window-banner-image">
+    <div id="chickenWindow" class="window-box" style="display: none">
+      <div class="window-banner">
+        <img
+          src="Images/SonicblastonNES (2).png"
+          alt="Sonicblaston"
+          class="window-banner-image"
+        />
+      </div>
+      <div class="window-header">
+        <div class="header-content">
+          <h3>Happy Mrs- Chicken</h3>
         </div>
-        <div class="window-header">
-            <div class="header-content">
-                <h3>Happy Mrs- Chicken</h3>
-            </div>
-            <button class="close-button">&times;</button>
-        </div>
-        <div class="window-content">
-            <div style="position:relative;height:0;padding-bottom:80%;"><iframe
-                    style="position:absolute;top:0;left:0;width:100%;height:100%;padding-bottom: 117,6%;"
-                    src="https://arcade.makecode.com/---run?id=S75237-82093-25145-12064"
-                    sandbox=" allow-popups allow-forms allow-scripts allow-same-origin" frameborder="0"></iframe></div>
-            </iframe>
-        </div>
+        <button class="close-button">[X]</button>
+      </div>
+      <div class="window-content">
+        <!-- Container for the game to render into -->
+        <div id="chickenGameContainer" style="width: 100%; height: 100%"></div>
+      </div>
     </div>
 
     <!-- Image viewer popup (opens when gallery images are clicked) -->
-    <div id="imageViewerWindow" class="window-box image-viewer" style="display: none;">
-        <div class="window-banner">
-            <img src="Images/SonicblastonNES (2).png" alt="A character called Sonicblaston" class="window-banner-image">
+    <div
+      id="imageViewerWindow"
+      class="window-box image-viewer"
+      style="display: none"
+    >
+      <div class="window-banner">
+        <img
+          src="Images/SonicblastonNES (2).png"
+          alt="A character called Sonicblaston"
+          class="window-banner-image"
+        />
+      </div>
+      <div class="window-header">
+        <div class="header-content">
+          <span class="window-title">Image</span>
         </div>
-        <div class="window-header">
-            <div class="header-content">
-                <span class="window-title">Image</span>
-            </div>
-            <button class="close-button">&times;</button>
-        </div>
-        <div class="window-content">
-            <img id="viewerImage" src="" alt="" />
-        </div>
+        <button class="close-button">[X]</button>
+      </div>
+      <div class="window-content">
+        <img id="viewerImage" src="" alt="" />
+      </div>
     </div>
-            <!-- Social media links -->
-        <div class="AnotherBox">
-            <div class="social-media">
-                <a href="https://discordapp.com/users/1275781404361228352" class="social-link">
-                    <img src="Images/DicordIcon.png" alt="Discord">
-                </a>
-                <a href="https://www.coolmathgames.com/0-learn-to-fly-2" class="social-link">
-                    <img src="Images/github.png" alt="github">
-                </a>
-                <a href="https://forum.makecode.com/u/sonicblaston/summary" class="social-link">
-                    <img src="Images/logo.png" alt="Makecode forum">
-                </a>
-                <a href="https://www.youtube.com/@Sonicblaston" class="social-link">
-                    <img src="Images/YouTubeIcon.png" alt="Youtube">
-                </a>
-            </div>
-        </div>
-    </main>
 
+    <!-- Load game.js before main.js so its functions are available -->
+    <script src="game.js"></script>
     <script src="main.js"></script>
-</body>
-
-
+  </body>
 </html>

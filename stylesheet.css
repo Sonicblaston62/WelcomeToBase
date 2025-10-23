@@ -1,584 +1,652 @@
 /* === General Page Styles === */
-html,
-body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+html {
+  height: 100%; /* Ensure html takes full viewport height */
+  margin: 0;
+  padding: 0;
+  background-image: url("Images/Bliss.webp"); /* Moved background to html */
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  overflow-y: scroll; /* Make html element scrollable */
+  -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
 }
 
 body {
-    background-image: url('Images/Bliss.webp');
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center center;
-    background-repeat: no-repeat;
-    font-family: "DOSfont", sans-serif;
-    overflow: auto;
-    -webkit-font-smoothing: none;
-    text-rendering: optimizeSpeed;
+  min-height: 100%; /* Ensure body is at least as tall as html */
+  margin: 0;
+  padding: 0;
+  font-family: "DOSfont", sans-serif;
+  /* Removed background properties from body */
+  overflow: visible; /* Allow content to extend beyond initial body height */
+  -webkit-font-smoothing: none;
+  text-rendering: optimizeSpeed;
 }
 
 /* === Navigation Container === */
 .container {
-    display: grid;
-    grid-template-columns: repeat(4, 150px);
-    grid-template-rows: 100px;
-    justify-content: center;
-    margin-bottom: 20px;
-    padding-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 150px);
+  grid-template-rows: 100px;
+  justify-content: center;
+  margin-bottom: 20px;
+  padding-top: 20px;
 }
 
 /* === Main Box (Welcome Section) === */
 .Box {
-    display: grid;
-    margin: 20px auto;
-    width: 550px;
-    height: 400px;
-    background-color: #ffffff;
-    border: 5px solid #3B77BC;
-    border-radius: 10px;
-    box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.338);
-    text-align: center;
-    position: relative;
+  display: grid;
+  margin: 20px auto;
+  width: 550px;
+  height: 400px;
+  background-color: #ffffff;
+  border: 5px solid #3b77bc;
+  border-radius: 10px;
+  box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.338);
+  text-align: center;
+  position: relative;
 }
 
 /* === Smaller Box (Social Media Section) === */
 .AnotherBox {
-    display: grid;
-    margin: 150px auto;
-    width: 550px;
-    height: 80px;
-    background-color: #ffffff;
-    border: 5px solid #3B77BC;
-    border-radius: 10px;
-    box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.338);
-    text-align: center;
+  display: grid;
+  margin: 150px auto;
+  width: 550px;
+  height: 80px;
+  background-color: #ffffff;
+  border: 5px solid #3b77bc;
+  border-radius: 10px;
+  box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.338);
+  text-align: center;
+  position: relative; /* Added for positioning context */
 }
 
 /* === General Image Styling === */
 img {
-    image-rendering: -webkit-optimize-contrast;
-    /* For Edge 79+ */
-    image-rendering: pixelated;
-    -ms-interpolation-mode: nearest-neighbor;
+  image-rendering: -webkit-optimize-contrast;
+  /* For Edge 79+ */
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
 }
 
 /* === Pixel Art Image Styling (for tadc.png) === */
 .Pixelart {
-    position: relative;
-    width: fit-content;
-    height: fit-content;
+  position: relative;
+  width: fit-content;
+  height: fit-content;
 }
 
 .Pixelart img {
-    position: absolute;
-    bottom: -85px;
-    right: -510px;
-    scale: 300%;
-    transform-origin: bottom right;
+  position: absolute;
+  bottom: -68px;
+  right: -510px;
+  scale: 300%;
+  transform-origin: bottom right;
 }
 
 /* === Custom Font Import === */
 @font-face {
-    font-family: 'DOSfont';
-    src: url('Arcade.otf') format('truetype');
+  font-family: "DOSfont";
+  src: url("Minecraftia.ttf") format("truetype");
 }
 
 /* === Navigation Buttons === */
 .button {
-    font-family: "DOSfont", sans-serif;
-    width: 150px;
-    height: 80px;
-    background-color: #ffffff;
-    border: 5px solid #3B77BC;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: black;
+  font-family: "DOSfont", sans-serif;
+  width: 150px;
+  height: 80px;
+  background-color: #ffffff;
+  border: 5px solid #3b77bc;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
 }
 
 .button:hover {
-    background-color: #d3e5fa;
+  background-color: #d3e5fa;
 }
 
 /* === Wrapper for All Content === */
 .content-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 /* === Popup Window Box === */
 .window-box {
-    position: fixed;
-    width: 550px;
-    height: 400px;
-    background-color: #ffffff;
-    border: 5px solid #3B77BC;
-    border-radius: 10px;
-    box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.338);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    -webkit-user-select: none;
-    /* Safari */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* IE 10+/Edge */
-    user-select: none;
+  position: fixed;
+  width: 550px;
+  height: 400px;
+  background-color: #ffffff;
+  border: 5px solid #3b77bc;
+  border-radius: 10px;
+  box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.338);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE 10+/Edge */
+  user-select: none;
 }
 
 #chickenWindow.window-box {
-    height: 600px;
-    width: 450px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    -webkit-user-select: none;
-    /* Safari */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* IE 10+/Edge */
-    user-select: none;
-    border: 5px solid #3B77BC;
-    background-color: #ffffff;
+  height: 600px;
+  width: 450px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE 10+/Edge */
+  user-select: none;
+  border: 5px solid #3b77bc;
+  background-color: #ffffff;
 }
 
 /* === Image Viewer Window === */
 .window-box.image-viewer {
-    width: min(1200px, 95vw);
-    height: min(840px, 92vh);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    z-index: 2000;
-    padding: 0;
+  width: min(800px, 95vw);
+  height: min(658px, 92vh);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  z-index: 2000;
+  padding: 0;
 }
 
 .image-viewer .window-header {
-    padding: 12px 14px;
-    height: 56px;
-    box-sizing: border-box;
+  padding: 12px 14px;
+  height: 56px;
+  box-sizing: border-box;
 }
 
 .image-viewer .window-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0px;
-    width: 100%;
-    height: calc(100% - 56px);
-    max-height: none;
-    overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  width: 100%;
+  height: calc(100% - 56px);
+  max-height: none;
+  overflow: hidden;
 }
 
 .image-viewer #viewerImage,
 .image-viewer .window-content img {
-    position: static;
-    margin: auto;
-    display: block;
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    transform: none !important;
-    scale: 1 !important;
+  position: static;
+  margin: auto;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transform: none !important;
+  scale: 1 !important;
 }
 
 .window-box.image-viewer.opening {
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
 }
 
 /* === Window Header (Draggable Bar) === */
 .window-header {
-    padding: 10px;
-    background-color: #3B77BC;
-    color: white;
-    cursor: move;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  padding: 10px;
+  background-color: #3b77bc;
+  color: white;
+  cursor: move;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header-content {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .close-button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 /* === Window Content Area === */
 .window-content {
-    padding: 20px;
-    max-height: 310px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-scrollbar-width: thin;
-    /* For Chrome, Safari, and Opera */
-    scrollbar-width: thin;
+  padding: 20px;
+  max-height: 310px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-scrollbar-width: thin;
+  /* For Chrome, Safari, and Opera */
+  scrollbar-width: thin;
 }
 
 /* === Scrollbar Styling === */
 .window-content::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
+  width: 12px;
+  height: 12px;
 }
 
 .window-content::-webkit-scrollbar-track {
-    background: #ffffff;
-    border-radius: 10px;
+  background: #ffffff;
+  border-radius: 10px;
 }
 
 .window-content::-webkit-scrollbar-thumb {
-    background-color: #3B77BC;
-    border-radius: 10px;
-    border: 3px solid #ffffff;
+  background-color: #3b77bc;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
 }
 
 .window-content::-webkit-scrollbar-thumb:hover {
-    background-color: #d3e5fa;
+  background-color: #d3e5fa;
 }
 
 /* === Text Wrapping === */
 .Box h1,
 .Box h2 {
-    white-space: pre;
+  white-space: pre;
 }
 
 .window-content h2,
 .window-content h3,
 .window-content p {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    max-width: 100%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 /* === Dragging Class === */
 .dragging {
-    -webkit-user-select: none;
-    /* Safari */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* IE 10+/Edge */
-    user-select: none;
-    cursor: grabbing !important;
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE 10+/Edge */
+  user-select: none;
+  cursor: grabbing !important;
 }
 
 /* === Portfolio Items === */
 .portfolio-item {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 20px;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid rgb(30, 83, 35);
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #3b77bc;
 }
 
 .portfolio-info {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .portfolio-info h3 {
-    margin: 0;
-    color: #3B77BC;
+  margin: 0;
+  color: #3b77bc;
 }
 
 .portfolio-info a {
-    color: #3B77BC;
-    text-decoration: none;
+  color: #3b77bc;
+  text-decoration: none;
 }
 
 .portfolio-info a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* === Portfolio Images === */
 .portfolio-image img {
-    position: static;
-    width: 100%;
-    height: auto;
-    image-rendering: initial;
-    scale: 100%;
-    border-radius: 5px;
-    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.2);
+  position: static;
+  width: 100%;
+  height: auto;
+  scale: 100%;
+  border-radius: 5px;
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.2);
+  image-rendering: initial;
 }
 
 /* === Project Description Text === */
 .project-description {
-    margin: 8px 0;
-    font-size: 0.9em;
-    line-height: 1.4;
+  margin: 8px 0;
+  font-size: 0.9em;
+  line-height: 1.4;
 }
 
 /* === Social Media Section === */
 .social-media {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0px;
 }
 
 .social-link img {
-    width: 40px;
-    height: 40px;
-    position: static;
-    scale: 150%;
+  width: 40px;
+  height: 40px;
+  position: static;
+  scale: 150%;
 }
 
 .social-link:hover {
-    scale: 110%;
+  scale: 110%;
 }
 
 /* === Window Icon === */
 .window-icon {
-    width: fit-content;
-    height: fit-content;
-    position: static;
-    scale: 300%;
+  width: fit-content;
+  height: fit-content;
+  position: static;
+  scale: 300%;
 }
 
 /* === Window Banner === */
 .window-banner {
-    position: absolute;
-    top: -66px;
-    left: 80%;
-    transform: translateX(-50%);
-    z-index: 999;
+  position: absolute;
+  top: -7px;
+  left: 80%;
+  transform: translateX(-50%);
+  z-index: 999;
 }
 
 .window-banner-image {
-    position: static;
-    scale: 300%;
+  position: static;
+  scale: 300%;
 }
 
 /* === Gallery Images === */
 .gallery-image img {
-    position: static;
-    width: 100%;
-    height: auto;
-    scale: 90%;
-    border-radius: 5px;
-    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.2);
+  position: static;
+  width: 100%;
+  height: auto;
+  scale: 90%;
+  border-radius: 5px;
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* === Chicken Game Button === */
 .chicken-button {
-    position: relative;
-    cursor: pointer;
-    width: 21px;
-    height: 17px;
-    background-image: url('Images/Chicken.gif');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: pixelated;
-    -ms-interpolation-mode: nearest-neighbor;
-    scale: 4;
-    transform-origin: center;
-    margin-bottom: -126px;
-    margin-left: -330px;
-    margin-top: 10px;
-    z-index: 10;
+  position: relative; /* Changed from relative to absolute */
+  cursor: pointer;
+  width: 21px;
+  height: 17px;
+  background-image: url("Images/Chicken.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+  scale: 5;
+  transform-origin: center;
+  bottom: -116px; /* Position below the AnotherBox */
+  left: -180px; /* Position to the left of the AnotherBox */
+  z-index: 10;
+  /* Removed: margin-bottom, margin-left, margin-top */
 }
 
 .chicken-button:hover {
-    background-image: url('Images/Chicken.png');
+  background-image: url("Images/Chicken.png");
 }
-
 
 /* === code for tablet version of website === */
 @media screen and (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    padding-top: 20px;
+    margin-bottom: 10px;
+  }
 
+  .Box {
+    padding: 10px;
+  }
 
-    .container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        padding-top: 10px;
-        margin-bottom: 10px;
-    }
+  .Box h1 {
+    font-size: 3em;
+  }
 
-    .Box {
-        padding: 10px;
-    }
+  .Box h2 {
+    font-size: 1.8em;
+  }
 
-    .Box h1 {
-        font-size: 2em;
-    }
+  .Pixelart img {
+    scale: 3;
+    bottom: -53px;
+  }
 
-    .Box h2 {
-        font-size: 1.2em;
-    }
+  .chicken-button {
+    scale: 5;
+    bottom: -46px;
+    left: -150px;
+  }
 
-    .Pixelart img {
-        scale: 0.7;
-    }
+  .AnotherBox {
+    margin-top: 80px;
+    position: absolute 1px;
+  }
 
-    .chicken-button {
-        scale: 2.5;
-        margin-left: -300px;
-        margin-top: 5px;
-        margin-bottom: -20px;
-    }
+  .window-box {
+    width: 90vw;
+    height: 80vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-    .AnotherBox {
-        margin-top: 20px;
-        position: relative;
-        bottom: -10vh;
+  .window-content {
+    font-size: 0.9em;
+  }
 
-    }
+  .portfolio-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
-    .window-box {
-        width: 90vw;
-        height: 80vh;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .window-content {
-        font-size: 0.9em;
-    }
-
-    .portfolio-item {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .portfolio-image,
-    .gallery-image {
-        margin-top: 10px;
-    }
+  .portfolio-image,
+  .gallery-image {
+    margin-top: 10px;
+  }
 }
 
 /* === Code for phone view of website === */
 @media screen and (max-width: 480px) {
-    body {
-        padding: 0 8px;
-        box-sizing: border-box;
-    }
+  .container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+    padding-top: 20px;
+    margin-bottom: 1px;
+    width: 95%;
+    box-sizing: border-box;
+    font-size: 22px;
+  }
 
-    .container {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 3px;
-        padding-top: 5px;
-        margin-bottom: 1px;
-        width: 100%;
-        box-sizing: border-box;
-        font-size: 22px;
-    }
+  .Box {
+    width: 90%;
+    height: 300px;
+    padding: 5px;
+    margin: 2px auto;
+  }
+  .Box h1 {
+    font-size: 1.8em;
+  }
 
-    .button {
-        width: auto;
-        padding: 5px 8px;
-        font-size: 0.8em;
-        height: 40px;
-        border-width: 4px;
-    }
+  .Box h2 {
+    font-size: 1em;
+  }
 
-    .Box {
-        width: 95%;
-        height: 80vw;
-        padding: 5px;
-        margin: 20px auto;
-    }
+  .Pixelart img {
+    position: absolute;
+    scale: 2.5;
+    bottom: -53px;
+    left: 300px;
+  }
 
-    .Box h1 {
-        font-size: 1.2em;
-    }
+  .chicken-button {
+    scale: 4;
+    bottom: -54px;
+    left: -110px;
+  }
 
-    .Box h2 {
-        font-size: 0.9em;
-    }
+  .AnotherBox {
+    margin-top: 80px;
+    position: absolute 1px;
+    width: 95%;
+  }
+  .button {
+    width: auto;
+    padding: 5px 8px;
+    font-size: 0.7em;
+    height: 40px;
+    border-width: 4px;
+  }
 
-    .Pixelart img {
-        scale: 2;
-        bottom: -75px;
-        right: -320px;
-    }
+  .window-box {
+    width: 90vw;
+    height: 80vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-    .chicken-button {
-        scale: 3;
-        margin-left: -200px;
-        margin-top: 10px;
-        margin-bottom: -60px;
-    }
+  .window-content {
+    font-size: 0.9em;
+  }
 
-    .social-media {
-        flex-wrap: wrap;
-        padding: -50px;
-    }
+  .portfolio-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
-    .social-link img {
-        width: 55px;
-        height: auto;
-        scale: 100%;
-    }
+  .portfolio-image,
+  .gallery-image {
+    margin-top: 10px;
+  }
+  /* body {
+    padding: 20px;
+    box-sizing: border-box;
+  }
 
-    .AnotherBox {
-        width: 93%;
-        height: 80px;
-        margin: 10px auto;
-        padding: 5px;
-    }
+  .container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+    padding-top: 5px;
+    margin-bottom: 1px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 22px;
+  }
 
-    .window-box {
-        width: 95vw;
-        height: 90vh;
-    }
+  .button {
+    width: auto;
+    padding: 5px 8px;
+    font-size: 0.8em;
+    height: 40px;
+    border-width: 4px;
+  }
 
-    .window-banner {
-        left: 50%;
-        transform: translateX(-50%);
-        top: -25px;
-    }
+  .Box {
+    width: 95%;
+    height: 300px;
+    padding: 5px;
+    margin: 20px auto;
+  }
 
-    .window-banner-image {
-        scale: 2;
-    }
+  .Box h1 {
+    font-size: 1.8em;
+  }
 
-    .window-content {
-        font-size: 0.75em;
-        padding: 10px;
-    }
+  .Box h2 {
+    font-size: 1.3em;
+  }
 
-    .image-viewer .window-header {
-        height: 40px;
-        padding: 8px 10px;
-    }
+  .Pixelart img {
+    position: absolute;
+    scale: 1;
+    bottom: -62px;
+    left: initial;
+  }
 
-    .image-viewer .window-content {
-        height: calc(100% - 40px);
-        padding: 5px;
-    }
 
-    .portfolio-item {
-        gap: 10px;
-        margin-bottom: 15px;
-    }
+  .social-media {
+    flex-wrap: wrap;
+    padding: -50px;
+  }
 
+  .social-link img {
+    width: 55px;
+    height: auto;
+    scale: 100%;
+  }
+
+  .AnotherBox {
+    position: absolute 1px;
+    width: 93%;
+    height: 80px;
+    margin-top: 60px;
+    padding: 5px;
+  }
+
+  .window-box {
+    width: 95vw;
+    height: 90vh;
+  }
+
+  .window-banner {
+    left: 50%;
+    transform: translateX(-50%);
+    top: -25px;
+  }
+
+  .window-banner-image {
+    scale: 2;
+  }
+
+  .window-content {
+    font-size: 0.75em;
+    padding: 10px;
+  }
+
+  .image-viewer .window-header {
+    height: 40px;
+    padding: 8px 10px;
+  }
+
+  .image-viewer .window-content {
+    height: calc(100% - 40px);
+    padding: 5px;
+  }
+
+  .portfolio-item {
+    gap: 10px;
+    margin-bottom: 15px;
+  } */
 }
