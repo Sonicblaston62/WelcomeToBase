@@ -11,7 +11,13 @@ document.addEventListener("DOMContentLoaded", function () {
     link.addEventListener("click", function (e) {
       e.preventDefault();
       windowEl.style.display = "block";
-      windowEl.style.transform = "translate(-50%, -50%)"; // Center
+
+      // Calculate random offsets for X and Y
+      const randomOffsetX = Math.floor(Math.random() * 61) - 30; // -30 to +30
+      const randomOffsetY = Math.floor(Math.random() * 61) - 30; // -30 to +30
+
+      // Apply initial centering with random offset
+      windowEl.style.transform = `translate(calc(-50% + ${randomOffsetX}px), calc(-50% + ${randomOffsetY}px))`;
       applyTypewriterEffect(windowId);
     });
 
@@ -68,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
   /* safer draggable implementation */
   function makeWindowDraggable(windowBox) {
     const header = windowBox.querySelector(".window-header");
+    const closeButton = windowBox.querySelector(".close-button"); // Get the close button for this specific window
     let initialX = 0,
       initialY = 0,
       xOffset = 0,
@@ -81,6 +88,12 @@ document.addEventListener("DOMContentLoaded", function () {
     function dragStart(e) {
       // only start when header (not internal controls) is used
       if (e.button !== 0) return; // left button only
+
+      // If the clicked element is the close button or a child of it, do not start dragging
+      if (e.target === closeButton || closeButton.contains(e.target)) {
+        return;
+      }
+
       // bring to front immediately
       bringToFront(windowBox);
 
@@ -196,8 +209,39 @@ document.addEventListener("DOMContentLoaded", function () {
   setupWindow('a[href="about.html"]', "aboutWindow");
   setupWindow('a[href="other.html"]', "artWindow");
   setupWindow('a[href="another.html"]', "anotherWindow");
-  // FIX: Change '#chickenLauncher' to '#chickenButton' to match your HTML
-  setupWindow("#chickenButton", "chickenWindow");
+
+  // Special setup for chicken window to handle game initialization
+  const chickenLink = document.querySelector("#chickenButton");
+  const chickenWindow = document.getElementById("chickenWindow");
+  const chickenCloseButton = chickenWindow.querySelector(".close-button");
+
+  chickenLink.addEventListener("click", function (e) {
+    e.preventDefault();
+    chickenWindow.style.display = "block";
+
+    // Calculate random offsets for X and Y
+    const randomOffsetX = Math.floor(Math.random() * 61) - 30; // -30 to +30
+    const randomOffsetY = Math.floor(Math.random() * 61) - 30; // -30 to +30
+
+    // Apply initial centering with random offset
+    chickenWindow.style.transform = `translate(calc(-50% + ${randomOffsetX}px), calc(-50% + ${randomOffsetY}px))`;
+
+    // Initialize the game after a short delay to ensure the container is ready
+    setTimeout(() => {
+      if (window.startGame) {
+        window.startGame("chickenGameContainer");
+      }
+    }, 100);
+  });
+
+  chickenCloseButton.addEventListener("click", () => {
+    if (window.destroyGame) {
+      window.destroyGame();
+    }
+    chickenWindow.style.display = "none";
+  });
+
+  makeWindowDraggable(chickenWindow);
 
   // Add image viewer open/close and attach click listeners to gallery images
   (function setupImageViewer() {

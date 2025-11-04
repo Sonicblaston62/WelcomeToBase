@@ -45,6 +45,7 @@ body {
   box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.338);
   text-align: center;
   position: relative;
+  font-size: 15px;
 }
 
 /* === Smaller Box (Social Media Section) === */
@@ -73,12 +74,11 @@ img {
 .Pixelart {
   position: relative;
   width: fit-content;
-  height: fit-content;
 }
 
 .Pixelart img {
   position: absolute;
-  bottom: -68px;
+  bottom: 0px;
   right: -510px;
   scale: 300%;
   transform-origin: bottom right;
@@ -100,7 +100,7 @@ img {
   border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,8 +143,8 @@ img {
 }
 
 #chickenWindow.window-box {
-  height: 600px;
-  width: 450px;
+  height: 534px;
+  width: 640px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -156,8 +156,20 @@ img {
   -ms-user-select: none;
   /* IE 10+/Edge */
   user-select: none;
-  border: 5px solid #3b77bc;
-  background-color: #ffffff;
+}
+
+#chickenWindow .window-header {
+  padding: 10px;
+  height: 54px;
+  box-sizing: border-box;
+}
+
+#chickenWindow .window-content {
+  padding: 0;
+  max-height: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* === Image Viewer Window === */
@@ -550,103 +562,4 @@ img {
   .gallery-image {
     margin-top: 10px;
   }
-  /* body {
-    padding: 20px;
-    box-sizing: border-box;
-  }
-
-  .container {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 3px;
-    padding-top: 5px;
-    margin-bottom: 1px;
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 22px;
-  }
-
-  .button {
-    width: auto;
-    padding: 5px 8px;
-    font-size: 0.8em;
-    height: 40px;
-    border-width: 4px;
-  }
-
-  .Box {
-    width: 95%;
-    height: 300px;
-    padding: 5px;
-    margin: 20px auto;
-  }
-
-  .Box h1 {
-    font-size: 1.8em;
-  }
-
-  .Box h2 {
-    font-size: 1.3em;
-  }
-
-  .Pixelart img {
-    position: absolute;
-    scale: 1;
-    bottom: -62px;
-    left: initial;
-  }
-
-
-  .social-media {
-    flex-wrap: wrap;
-    padding: -50px;
-  }
-
-  .social-link img {
-    width: 55px;
-    height: auto;
-    scale: 100%;
-  }
-
-  .AnotherBox {
-    position: absolute 1px;
-    width: 93%;
-    height: 80px;
-    margin-top: 60px;
-    padding: 5px;
-  }
-
-  .window-box {
-    width: 95vw;
-    height: 90vh;
-  }
-
-  .window-banner {
-    left: 50%;
-    transform: translateX(-50%);
-    top: -25px;
-  }
-
-  .window-banner-image {
-    scale: 2;
-  }
-
-  .window-content {
-    font-size: 0.75em;
-    padding: 10px;
-  }
-
-  .image-viewer .window-header {
-    height: 40px;
-    padding: 8px 10px;
-  }
-
-  .image-viewer .window-content {
-    height: calc(100% - 40px);
-    padding: 5px;
-  }
-
-  .portfolio-item {
-    gap: 10px;
-    margin-bottom: 15px;
-  } */
 }

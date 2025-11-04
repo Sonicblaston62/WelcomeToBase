@@ -17,7 +17,6 @@ function startGame(parentElementId) {
     backgroundColor: 0x90b5c6,
     scale: {
       mode: Phaser.Scale.NONE,
-      autoCenter: Phaser.Scale.CENTER_BOTH,
       zoom: ZOOM,
     },
     physics: {
@@ -32,7 +31,8 @@ function startGame(parentElementId) {
       create,
       update,
     },
-    parent: parentElementId, // Specify the parent DOM element ID
+    parent: parentElementId,
+    canvasStyle: "display: block; margin: 0 auto;",
   };
 
   gameInstance = new Phaser.Game(config);
@@ -52,6 +52,16 @@ window.startGame = startGame;
 window.destroyGame = destroyGame;
 
 function preload() {
+  // Create a style element and add the @font-face rule
+  const style = document.createElement("style");
+  style.textContent = `
+    @font-face {
+      font-family: 'Minecraftia';
+      src: url('Minecraftia.ttf') format('truetype');
+    }
+  `;
+  document.head.appendChild(style);
+
   this.load.image("chicken", "Images/Chicken.png");
   this.load.image("egglaying", "Images/egglaying.png");
   this.load.image("egg", "Images/Egg.png");
@@ -59,6 +69,11 @@ function preload() {
   this.load.spritesheet("hatching", "Images/hatching.png", {
     frameWidth: 16,
     frameHeight: 16,
+  });
+
+  // Wait for font to load
+  document.fonts.load("10px Minecraftia").then(() => {
+    console.log("Minecraftia font loaded");
   });
 }
 
@@ -81,12 +96,12 @@ function create() {
   this.chickens.add(this.mrsChicken);
 
   const menuFont = {
-    fontFamily: "Minecraftia",
-    fontSize: "8px",
+    fontFamily: "Minecraftia, monospace",
+    fontSize: "32px", // 8px * 4 (ZOOM)
     color: "#FFFFFF",
   };
   const scoreFont = {
-    fontFamily: "Minecraftia",
+    fontFamily: "Minecraftia, monospace",
     fontSize: "8px",
     color: "#C98D3F",
   };
@@ -94,7 +109,7 @@ function create() {
   this.title1 = this.add
     .text(110, 30, "Happy Mrs. Chicken", menuFont)
     .setOrigin(0.5);
-  this.title2 = this.add.text(110, 44, "Remaster!", menuFont).setOrigin(0.5);
+  this.title2 = this.add.text(110, 44, "Remaster!", menuFont).setOrigin(0);
   this.startText = this.add.text(110, 68, "<Start>", menuFont).setOrigin(0.5);
   this.creditsText = this.add.text(110, 82, "Credits", menuFont).setOrigin(0.5);
 
