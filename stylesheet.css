@@ -87,7 +87,7 @@ img {
 /* === Custom Font Import === */
 @font-face {
   font-family: "DOSfont";
-  src: url("Minecraftia.ttf") format("truetype");
+  src: url("Minecraftia.woff2") format("woff2");
 }
 
 /* === Navigation Buttons === */
@@ -561,5 +561,50 @@ img {
   .portfolio-image,
   .gallery-image {
     margin-top: 10px;
+  }
+}
+
+/* Mobile/Tablet slide-up panel styles */
+@media (max-width: 1024px) {
+  .window-box {
+    position: fixed !important;
+    bottom: -100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 90vh !important;
+    max-height: 90vh !important;
+    margin: 0 !important;
+    border-radius: 16px 16px 0 0 !important;
+    transform: none !important;
+    transition: bottom 0.4s ease-in-out !important;
+    overflow-y: auto !important;
+    z-index: 1000 !important;
+  }
+
+  .window-box.active {
+    bottom: 0 !important;
+  }
+
+  .window-header {
+    cursor: default !important;
+  }
+}
+
+/* Desktop styles remain unchanged */
+@media (min-width: 1025px) {
+  .window-box {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .window-header {
+    cursor: grab;
+  }
+
+  .window-header:active {
+    cursor: grabbing;
   }
 }

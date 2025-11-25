@@ -1,8 +1,8 @@
 const WIDTH = 160;
 const HEIGHT = 120;
-const ZOOM = 4; // fixed 4x scale instead of dynamic
+const ZOOM = 4;
 
-let gameInstance = null; // To hold the Phaser game instance
+let gameInstance = null;
 
 function startGame(parentElementId) {
   if (gameInstance) {
@@ -25,12 +25,11 @@ function startGame(parentElementId) {
     render: {
       pixelArt: true,
       antialias: false,
+      mipmapFilter: "LINEAR_MIPMAP_LINEAR",
+      premultipliedAlpha: true,
+      preserveDrawingBuffer: false,
     },
-    scene: {
-      preload,
-      create,
-      update,
-    },
+    scene: { preload, create, update },
     parent: parentElementId,
     canvasStyle: "display: block; margin: 0 auto;",
   };
@@ -45,21 +44,9 @@ function destroyGame() {
   }
 }
 
-// Make startGame and destroyGame globally accessible if game.js is loaded directly
-// or use module exports if you're using a module bundler.
-// For this scenario, we'll attach them to the window object.
-window.startGame = startGame;
-window.destroyGame = destroyGame;
-
 function preload() {
-  // Create a style element and add the @font-face rule
   const style = document.createElement("style");
-  style.textContent = `
-    @font-face {
-      font-family: 'Minecraftia';
-      src: url('Minecraftia.ttf') format('truetype');
-    }
-  `;
+  style.textContent = "@font-face{font-family:'Minecraftia';src:url('Minecraftia.woff2')format('woff2')}";
   document.head.appendChild(style);
 
   this.load.image("chicken", "Images/Chicken.png");
@@ -71,9 +58,10 @@ function preload() {
     frameHeight: 16,
   });
 
-  // Wait for font to load
   document.fonts.load("10px Minecraftia").then(() => {
     console.log("Minecraftia font loaded");
+  }).catch(() => {
+    console.warn("Font failed to load, using fallback");
   });
 }
 
@@ -81,205 +69,137 @@ function create() {
   const scene = this;
   this.score = 0;
 
-  ["chicken", "egglaying", "egg", "chick"].forEach((key) =>
-    this.textures.get(key).setFilter(Phaser.Textures.FilterMode.NEAREST)
+  ["chicken", "egglaying", "egg", "chick"].forEach((k) =>
+    this.textures.get(k).setFilter(Phaser.Textures.FilterMode.NEAREST)
   );
 
   this.menu = true;
   this.selectedButton = 0;
   this.loading = false;
-
   this.eggs = this.add.group();
   this.chickens = this.add.group();
 
   this.mrsChicken = this.add.sprite(35, 60, "chicken").setScale(4).setDepth(2);
   this.chickens.add(this.mrsChicken);
 
-  const menuFont = {
-    fontFamily: "Minecraftia, monospace",
-    fontSize: "32px", // 8px * 4 (ZOOM)
-    color: "#FFFFFF",
-  };
-  const scoreFont = {
-    fontFamily: "Minecraftia, monospace",
-    fontSize: "8px",
-    color: "#C98D3F",
-  };
+  const f = { fontFamily: "Minecraftia, monospace", fontSize: "8px", color: "#FFF" };
+  const sf = { ...f, color: "#C98D3F" };
 
-  this.title1 = this.add
-    .text(110, 30, "Happy Mrs. Chicken", menuFont)
-    .setOrigin(0.5);
-  this.title2 = this.add.text(110, 44, "Remaster!", menuFont).setOrigin(0);
-  this.startText = this.add.text(110, 68, "<Start>", menuFont).setOrigin(0.5);
-  this.creditsText = this.add.text(110, 82, "Credits", menuFont).setOrigin(0.5);
+  // Wait for font before creating text
+  document.fonts.ready.then(() => {
+    this.title1 = this.add.text(110, 30, "Happy Mrs. Chicken", f).setOrigin(0.5);
+    this.title2 = this.add.text(90, 38, "Remaster!", f).setOrigin(0);
+    this.startText = this.add.text(110, 68, "<Start>", f).setOrigin(0.5);
+    this.creditsText = this.add.text(110, 82, "Credits", f).setOrigin(0.5);
 
-  // Score background with crisp orange bottom+left border
-  this.scoreBg = this.add.graphics().setDepth(4).setScrollFactor(0);
-  this.scoreBg.visible = false;
+    this.scoreBg = this.add.graphics().setDepth(4).setScrollFactor(0);
+    this.scoreBg.visible = false;
 
-  this.drawScoreBox = (width) => {
-    const fillColor = 0xf5efe8;
-    const borderColor = 0xc98d3f;
-    const boxHeight = 10;
-    const x = WIDTH - width - 2;
-    const y = 0;
+    this.drawScoreBox = (w) => {
+      const x = WIDTH - w - 2,
+        y = 0;
+      this.scoreBg.clear().setScrollFactor(0).setDepth(4);
+      this.scoreBg.fillStyle(0xf5efe8, 1);
+      this.scoreBg.fillRect(x, y, w + 2, 10);
+      this.scoreBg.fillStyle(0xc98d3f, 1);
+      this.scoreBg.fillRect(x, y + 9, w + 2, 1);
+      this.scoreBg.fillRect(x, y, 1, 10);
+      this.scoreBg.setVisible(true);
+    };
 
-    this.scoreBg.clear();
-    this.scoreBg.setScrollFactor(0);
-    this.scoreBg.setDepth(4);
+    this.scoreText = this.add.text(WIDTH - 2, -1, "0", sf).setOrigin(1, 0).setDepth(5).setScrollFactor(0).setVisible(false);
 
-    this.scoreBg.fillStyle(fillColor, 1);
-    this.scoreBg.fillRect(
-      Math.floor(x),
-      Math.floor(y),
-      Math.floor(width + 2),
-      Math.floor(boxHeight)
-    );
+    this.keys = this.input.keyboard.addKeys({
+      up: Phaser.Input.Keyboard.KeyCodes.UP,
+      down: Phaser.Input.Keyboard.KeyCodes.DOWN,
+      z: Phaser.Input.Keyboard.KeyCodes.Z,
+      enter: Phaser.Input.Keyboard.KeyCodes.ENTER,
+    });
 
-    this.scoreBg.fillStyle(borderColor, 1);
-    this.scoreBg.fillRect(
-      Math.floor(x),
-      Math.floor(y + boxHeight - 1),
-      Math.floor(width + 2),
-      1
-    );
-    this.scoreBg.fillRect(
-      Math.floor(x),
-      Math.floor(y),
-      1,
-      Math.floor(boxHeight)
-    );
-
-    this.scoreBg.setVisible(true);
-  };
-
-  // Score text
-  this.scoreText = this.add
-    .text(WIDTH - 2, -1, "0", scoreFont)
-    .setOrigin(1, 0)
-    .setDepth(5)
-    .setScrollFactor(0)
-    .setVisible(false);
-
-  // Keyboard controls
-  this.keys = this.input.keyboard.addKeys({
-    up: Phaser.Input.Keyboard.KeyCodes.UP,
-    down: Phaser.Input.Keyboard.KeyCodes.DOWN,
-    z: Phaser.Input.Keyboard.KeyCodes.Z,
-    enter: Phaser.Input.Keyboard.KeyCodes.ENTER,
-  });
-
-  this.input.keyboard.on("keydown-UP", () => {
-    if (this.menu) {
-      this.selectedButton = 0;
-      this.startText.setText("<Start>");
-      this.creditsText.setText("Credits");
-    }
-  });
-
-  this.input.keyboard.on("keydown-DOWN", () => {
-    if (this.menu) {
-      this.selectedButton = 1;
-      this.startText.setText("Start");
-      this.creditsText.setText("<Credits>");
-    }
-  });
-
-  this.input.keyboard.on("keydown-Z", () => this.handleA());
-  this.input.keyboard.on("keydown-ENTER", () => this.handleA());
-  this.input.on("pointerdown", () => this.handleA());
-
-  // Define hatching animation
-  this.anims.create({
-    key: "hatch",
-    frames: this.anims.generateFrameNumbers("hatching", {
-      start: 0,
-      end: 11,
-    }),
-    frameRate: 6,
-    repeat: 0,
-  });
-
-  // Hatch event using spritesheet animation
-  this.time.addEvent({
-    delay: 10000,
-    loop: true,
-    callback: () => {
-      if (!this.menu) {
-        this.eggs.getChildren().forEach((egg) => {
-          const x = egg.x;
-          const y = egg.y;
-          egg.destroy();
-
-          const hatchAnim = scene.add
-            .sprite(x, y, "hatching")
-            .setDepth(2)
-            .play("hatch");
-
-          hatchAnim.on("animationcomplete", () => {
-            hatchAnim.destroy();
-            const chicken = scene.add.sprite(x, y, "chicken").setDepth(2);
-            scene.chickens.add(chicken);
-          });
-        });
+    this.input.keyboard.on("keydown-UP", () => {
+      if (this.menu) {
+        this.selectedButton = 0;
+        this.startText.setText("<Start>");
+        this.creditsText.setText("Credits");
       }
-    },
-  });
+    });
 
-  // Loading sprite
-  this.loadingSprite = this.add
-    .sprite(WIDTH - 12, HEIGHT - 12, "egg")
-    .setVisible(false)
-    .setDepth(10);
-  this.loadingCam = this.cameras.add(0, 0, WIDTH, HEIGHT);
-  this.loadingCam.setBackgroundColor(0x17111a);
-  this.loadingCam.setVisible(false);
+    this.input.keyboard.on("keydown-DOWN", () => {
+      if (this.menu) {
+        this.selectedButton = 1;
+        this.startText.setText("Start");
+        this.creditsText.setText("<Credits>");
+      }
+    });
+
+    this.input.keyboard.on("keydown-Z", () => this.handleA());
+    this.input.keyboard.on("keydown-ENTER", () => this.handleA());
+    this.input.on("pointerdown", () => this.handleA());
+
+    this.anims.create({
+      key: "hatch",
+      frames: this.anims.generateFrameNumbers("hatching", { start: 0, end: 10 }),
+      frameRate: 6,
+      repeat: 0,
+    });
+
+    this.time.addEvent({
+      delay: 10000,
+      loop: true,
+      callback: () => {
+        if (!this.menu) {
+          this.eggs.getChildren().forEach((egg) => {
+            const { x, y } = egg;
+            egg.destroy();
+            const h = scene.add.sprite(x, y, "hatching").setDepth(2).play("hatch");
+            h.on("animationcomplete", () => {
+              h.destroy();
+              scene.chickens.add(scene.add.sprite(x, y, "chicken").setDepth(2));
+            });
+          });
+        }
+      },
+    });
+
+    this.loadingSprite = this.add.sprite(WIDTH - 12, HEIGHT - 12, "egg").setVisible(false).setDepth(10);
+    this.loadingCam = this.cameras.add(0, 0, WIDTH, HEIGHT).setBackgroundColor(0x17111a).setVisible(false);
+  });
 }
 
 function handleMenu(scene) {
   scene.cameras.main.fadeOut(400, 23, 17, 26);
   scene.time.delayedCall(400, () => {
-    scene.title1.setVisible(false);
-    scene.title2.setVisible(false);
-    scene.startText.setVisible(false);
-    scene.creditsText.setVisible(false);
+    [scene.title1, scene.title2, scene.startText, scene.creditsText].forEach((t) => t.setVisible(false));
     scene.mrsChicken.destroy();
 
     scene.loadingSprite.setVisible(true);
     scene.loadingCam.setVisible(true);
-    scene.loadingSprite.setDepth(10);
 
-    const images = ["egg", "chick", "chicken"];
-    let index = 0;
-    const loops = 2;
-    const steps = images.length * loops;
+    const imgs = ["egg", "chick", "chicken"];
+    let idx = 0;
+    const steps = imgs.length * 2;
 
-    const animTimer = scene.time.addEvent({
+    const anim = scene.time.addEvent({
       delay: 500,
       repeat: steps - 1,
       callback: () => {
-        scene.loadingSprite.setTexture(images[index]);
-        index = (index + 1) % images.length;
+        scene.loadingSprite.setTexture(imgs[idx]);
+        idx = (idx + 1) % imgs.length;
       },
     });
 
     scene.time.delayedCall(500 * steps, () => {
-      animTimer.remove(false);
+      anim.remove(false);
       scene.loadingCam.fadeOut(400, 23, 17, 26);
       scene.time.delayedCall(400, () => {
         scene.loadingCam.setVisible(false);
         scene.loadingSprite.setVisible(false);
         scene.cameras.main.fadeIn(400, 23, 17, 26);
-
-        const main = scene.add
-          .sprite(WIDTH / 2, HEIGHT / 2, "chicken")
-          .setDepth(2);
-        scene.chickens.add(main);
+        scene.chickens.add(scene.add.sprite(WIDTH / 2, HEIGHT / 2, "chicken").setDepth(2));
         scene.menu = false;
         scene.loading = false;
         scene.score = 0;
-        scene.scoreText.setText("0");
-        scene.scoreText.setVisible(true);
+        scene.scoreText.setText("0").setVisible(true);
         scene.drawScoreBox(scene.scoreText.width + 4);
       });
     });
@@ -291,14 +211,10 @@ function handleGame(scene) {
     ch.setTexture("egglaying");
     ch.x = Phaser.Math.Between(1, WIDTH - 1);
     ch.y = Phaser.Math.Between(1, HEIGHT - 1);
-
-    const egg = scene.add.sprite(ch.x, ch.y, "egg").setDepth(1);
-    scene.eggs.add(egg);
-
+    scene.eggs.add(scene.add.sprite(ch.x, ch.y, "egg").setDepth(1));
     scene.time.delayedCall(300, () => {
       ch.y -= 3;
       ch.setTexture("chicken");
-
       if (!scene.menu) {
         scene.score++;
         scene.scoreText.setText(scene.score);
@@ -316,50 +232,29 @@ Phaser.Scene.prototype.handleA = function () {
       handleMenu(this);
     } else if (this.selectedButton === 1) {
       this.cameras.main.flash(300, 255, 255, 255);
+      const tf = { fontFamily: "Minecraftia", fontSize: "8px", color: "#C98D3F" };
+      const msg = this.add.text(WIDTH / 2, HEIGHT / 2, "Created by Sonicblaston", tf).setOrigin(0.5).setDepth(999);
+      const bg = this.add.graphics().setDepth(998);
+      const p = 3,
+        w = msg.width + p * 2,
+        h = msg.height + p * 2;
+      const bx = WIDTH / 2 - w / 2,
+        by = HEIGHT / 2 - h / 2;
 
-      const textFont = {
-        fontFamily: "Minecraftia",
-        fontSize: "8px",
-        color: "#C98D3F",
-      };
+      bg.fillStyle(0xf5efe8, 1).fillRect(bx, by, w, h);
+      bg.fillStyle(0xc98d3f, 1);
+      [0, h - 1].forEach((y) => bg.fillRect(bx, by + y, w, 1));
+      [0, w - 1].forEach((x) => bg.fillRect(bx + x, by, 1, h));
 
-      const msg = this.add
-        .text(WIDTH / 2, HEIGHT / 2, "Created by Sonicblaston", textFont)
-        .setOrigin(0.5)
-        .setDepth(999);
-
-      // Draw background box behind text (styled like score box)
-      const msgBg = this.add.graphics().setDepth(998);
-      const padding = 3;
-      const textWidth = msg.width + padding * 2;
-      const textHeight = msg.height + padding * 2;
-      const boxX = Math.floor(WIDTH / 2 - textWidth / 2);
-      const boxY = Math.floor(HEIGHT / 2 - textHeight / 2);
-      const fillColor = 0xf5efe8;
-      const borderColor = 0xc98d3f;
-
-      // Draw solid fill
-      msgBg.fillStyle(fillColor, 1);
-      msgBg.fillRect(boxX, boxY, textWidth, textHeight);
-
-      // Draw full crisp border (top, bottom, left, right)
-      msgBg.fillStyle(borderColor, 1);
-      // Top
-      msgBg.fillRect(boxX, boxY, textWidth, 1);
-      // Bottom
-      msgBg.fillRect(boxX, boxY + textHeight - 1, textWidth, 1);
-      // Left
-      msgBg.fillRect(boxX, boxY, 1, textHeight);
-      // Right
-      msgBg.fillRect(boxX + textWidth - 1, boxY, 1, textHeight);
-
-      // Remove both after delay
       this.time.delayedCall(1500, () => {
         msg.destroy();
-        msgBg.destroy();
+        bg.destroy();
       });
     }
   } else {
     handleGame(this);
   }
 };
+
+window.startGame = startGame;
+window.destroyGame = destroyGame;

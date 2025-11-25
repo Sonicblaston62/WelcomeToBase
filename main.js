@@ -1,32 +1,46 @@
 // Wait until the page is ready to run the code
 document.addEventListener("DOMContentLoaded", function () {
+  // Detect if device is mobile/tablet
+  function isMobileOrTablet() {
+    return window.innerWidth <= 1024;
+  }
+
   // Generic function to handle window events (open/close/drag)
   function setupWindow(linkSelector, windowId) {
     const link = document.querySelector(linkSelector);
     const windowEl = document.getElementById(windowId);
     const closeButton = windowEl.querySelector(".close-button");
-    const windowHeader = windowEl.querySelector(".window-header");
 
     // Open window
     link.addEventListener("click", function (e) {
       e.preventDefault();
-      windowEl.style.display = "block";
-
-      // Calculate random offsets for X and Y
-      const randomOffsetX = Math.floor(Math.random() * 61) - 30; // -30 to +30
-      const randomOffsetY = Math.floor(Math.random() * 61) - 30; // -30 to +30
-
-      // Apply initial centering with random offset
-      windowEl.style.transform = `translate(calc(-50% + ${randomOffsetX}px), calc(-50% + ${randomOffsetY}px))`;
-      applyTypewriterEffect(windowId);
+      
+      if (isMobileOrTablet()) {
+        // Mobile/Tablet: slide up from bottom
+        windowEl.classList.add("active");
+        applyTypewriterEffect(windowId);
+      } else {
+        // Desktop: centered with drag
+        windowEl.style.display = "block";
+        const randomOffsetX = Math.floor(Math.random() * 61) - 30;
+        const randomOffsetY = Math.floor(Math.random() * 61) - 30;
+        windowEl.style.transform = `translate(calc(-50% + ${randomOffsetX}px), calc(-50% + ${randomOffsetY}px))`;
+        applyTypewriterEffect(windowId);
+      }
     });
 
     // Close window
     closeButton.addEventListener("click", () => {
-      windowEl.style.display = "none";
+      if (isMobileOrTablet()) {
+        windowEl.classList.remove("active");
+      } else {
+        windowEl.style.display = "none";
+      }
     });
 
-    makeWindowDraggable(windowEl); // Make draggable
+    if (!isMobileOrTablet()) {
+      makeWindowDraggable(windowEl);
+    }
   }
 
   function bringToFront(windowBox) {
@@ -74,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
   /* safer draggable implementation */
   function makeWindowDraggable(windowBox) {
     const header = windowBox.querySelector(".window-header");
-    const closeButton = windowBox.querySelector(".close-button"); // Get the close button for this specific window
+    const closeButton = windowBox.querySelector(".close-button");
     let initialX = 0,
       initialY = 0,
       xOffset = 0,
@@ -86,23 +100,18 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("mouseup", dragEnd);
 
     function dragStart(e) {
-      // only start when header (not internal controls) is used
-      if (e.button !== 0) return; // left button only
+      if (e.button !== 0) return;
 
-      // If the clicked element is the close button or a child of it, do not start dragging
       if (e.target === closeButton || closeButton.contains(e.target)) {
         return;
       }
 
-      // bring to front immediately
       bringToFront(windowBox);
 
-      // read current translation in pixels (robust)
       const t = getCurrentTranslation(windowBox);
       xOffset = t.x || 0;
       yOffset = t.y || 0;
 
-      // compute initial mouse offset so element follows pointer without jumping
       initialX = e.clientX - xOffset;
       initialY = e.clientY - yOffset;
 
@@ -126,7 +135,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // REMOVE THE FOLLOWING FUNCTION IF IT IS NOT USED ELSEWHERE
   function applyTypewriterEffect(windowId) {
     const windowElement = document.getElementById(windowId);
     if (!windowElement) return;
@@ -134,20 +142,16 @@ document.addEventListener("DOMContentLoaded", function () {
       ".window-content h2, .window-content h3, .window-content h4, .window-content p, .window-content a"
     );
 
-    // helper: measure final height of text without affecting layout
     function measureTextHeight(el, fullText) {
       const style = getComputedStyle(el);
       const rect = el.getBoundingClientRect();
       const clone = document.createElement(el.tagName);
       clone.textContent = fullText;
-      // make clone invisible and off-document flow
       clone.style.position = "absolute";
       clone.style.visibility = "hidden";
       clone.style.left = "-9999px";
       clone.style.top = "0";
-      // ensure same width as original so wrapping matches
       clone.style.width = Math.max(0, rect.width) + "px";
-      // copy font/spacing/box properties that affect height/wrapping
       const props = [
         "font",
         "fontFamily",
@@ -179,25 +183,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     contentElements.forEach((element) => {
       const fullText = element.textContent || "";
-      // precompute final height and lock min-height to that value so layout doesn't move
       const finalH = measureTextHeight(element, fullText);
-      // preserve original display to not change layout unexpectedly
       const origDisplay = getComputedStyle(element).display || "block";
       element.style.display =
         origDisplay === "inline" ? "inline-block" : origDisplay;
       element.style.whiteSpace = "normal";
       element.style.minHeight = finalH + "px";
-      element.textContent = ""; // clear visible text
+      element.textContent = "";
 
-      // typewriter: reveal characters while reserved space prevents jumps
       let i = 0;
       (function step() {
         if (i <= fullText.length) {
           element.textContent = fullText.slice(0, i++);
           setTimeout(step, 30);
         } else {
-          // typing finished — keep layout stable, remove minHeight if you prefer auto behavior
-          // element.style.minHeight = ''; // optionally remove
           element.style.display = origDisplay;
         }
       })();
@@ -217,16 +216,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   chickenLink.addEventListener("click", function (e) {
     e.preventDefault();
-    chickenWindow.style.display = "block";
+    
+    if (isMobileOrTablet()) {
+      chickenWindow.classList.add("active");
+    } else {
+      chickenWindow.style.display = "block";
+      const randomOffsetX = Math.floor(Math.random() * 61) - 30;
+      const randomOffsetY = Math.floor(Math.random() * 61) - 30;
+      chickenWindow.style.transform = `translate(calc(-50% + ${randomOffsetX}px), calc(-50% + ${randomOffsetY}px))`;
+    }
 
-    // Calculate random offsets for X and Y
-    const randomOffsetX = Math.floor(Math.random() * 61) - 30; // -30 to +30
-    const randomOffsetY = Math.floor(Math.random() * 61) - 30; // -30 to +30
-
-    // Apply initial centering with random offset
-    chickenWindow.style.transform = `translate(calc(-50% + ${randomOffsetX}px), calc(-50% + ${randomOffsetY}px))`;
-
-    // Initialize the game after a short delay to ensure the container is ready
     setTimeout(() => {
       if (window.startGame) {
         window.startGame("chickenGameContainer");
@@ -238,33 +237,50 @@ document.addEventListener("DOMContentLoaded", function () {
     if (window.destroyGame) {
       window.destroyGame();
     }
-    chickenWindow.style.display = "none";
+    if (isMobileOrTablet()) {
+      chickenWindow.classList.remove("active");
+    } else {
+      chickenWindow.style.display = "none";
+    }
   });
 
-  makeWindowDraggable(chickenWindow);
+  if (!isMobileOrTablet()) {
+    makeWindowDraggable(chickenWindow);
+  }
 
   // Add image viewer open/close and attach click listeners to gallery images
   (function setupImageViewer() {
     const viewer = document.getElementById("imageViewerWindow");
     if (!viewer) return;
 
-    // ensure draggable & close button work (makeWindowDraggable exists earlier)
     const closeBtn = viewer.querySelector(".close-button");
-    closeBtn.addEventListener("click", () => (viewer.style.display = "none"));
-    makeWindowDraggable(viewer);
+    closeBtn.addEventListener("click", () => {
+      if (isMobileOrTablet()) {
+        viewer.classList.remove("active");
+      } else {
+        viewer.style.display = "none";
+      }
+    });
+
+    if (!isMobileOrTablet()) {
+      makeWindowDraggable(viewer);
+    }
 
     const viewerImg = viewer.querySelector("#viewerImage");
 
     function openImageViewer(src, alt = "") {
       viewerImg.src = src;
       viewerImg.alt = alt;
-      // show and center using same transform approach used elsewhere
-      viewer.style.display = "block";
-      viewer.style.transform = "translate(-50%, -50%)";
-      bringToFront(viewer);
+      
+      if (isMobileOrTablet()) {
+        viewer.classList.add("active");
+      } else {
+        viewer.style.display = "block";
+        viewer.style.transform = "translate(-50%, -50%)";
+        bringToFront(viewer);
+      }
     }
 
-    // attach to gallery images (art gallery and portfolio thumbnails)
     const thumbs = document.querySelectorAll(
       ".gallery-image img, .portfolio-image img"
     );
@@ -276,43 +292,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   })();
 
-  // Example of how your window opening/closing logic might look
-  function openWindow(windowId) {
-    const windowElement = document.getElementById(windowId);
-    if (windowElement) {
-      windowElement.style.display = "block"; // Or remove 'hidden' class
-      if (windowId === "chickenWindow") {
-        // Start the Phaser game when the chicken window opens
-        if (window.startGame) {
-          window.startGame("chickenGameContainer");
-        }
+  // Handle window resize to switch between mobile and desktop modes
+  window.addEventListener("resize", () => {
+    const allWindows = document.querySelectorAll(".window-box");
+    allWindows.forEach((w) => {
+      if (isMobileOrTablet()) {
+        w.style.display = "";
+        w.classList.remove("active");
+      } else {
+        w.classList.remove("active");
+        w.style.display = "none";
       }
-    }
-  }
-
-  function closeWindow(windowId) {
-    const windowElement = document.getElementById(windowId);
-    if (windowElement) {
-      windowElement.style.display = "none"; // Or add 'hidden' class
-      if (windowId === "chickenWindow") {
-        // Destroy the Phaser game when the chicken window closes
-        if (window.destroyGame) {
-          window.destroyGame();
-        }
-      }
-    }
-  }
-
-  // Example: Attach event listener to the chicken button
-  document.getElementById("chickenButton").addEventListener("click", () => {
-    openWindow("chickenWindow");
-  });
-
-  // Example: Attach event listener to the close button of chicken window
-  document
-    .getElementById("chickenWindow")
-    .querySelector(".close-button")
-    .addEventListener("click", () => {
-      closeWindow("chickenWindow");
     });
+  });
 });
