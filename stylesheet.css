@@ -84,10 +84,10 @@ img {
   transform-origin: bottom right;
 }
 
-/* === Custom Font Import === */
+/* ===Custom Font=== */
 @font-face {
   font-family: "DOSfont";
-  src: url("Minecraftia.woff2") format("woff2");
+  src: url("Minecraftia.ttf") format("TrueType");
 }
 
 /* === Navigation Buttons === */
