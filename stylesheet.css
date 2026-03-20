@@ -1,29 +1,42 @@
+/* === Fonts === */
+@font-face {
+  font-family: "DOSfont";
+  src: url("Minecraftia.woff2") format("woff2");
+}
+
 /* === General Page Styles === */
 html {
-  height: 100%; /* Ensure html takes full viewport height */
+  height: 100%;
   margin: 0;
   padding: 0;
-  background-image: url("Images/Bliss.webp"); /* Moved background to html */
+  background-image: url("Images/Bliss.avif");
   background-size: cover;
   background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repeat;
-  overflow-y: scroll; /* Make html element scrollable */
-  -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+  image-rendering: optimizeSpeed;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
-  min-height: 100%; /* Ensure body is at least as tall as html */
+  min-height: 100%;
   margin: 0;
   padding: 0;
   font-family: "DOSfont", sans-serif;
-  /* Removed background properties from body */
-  overflow: visible; /* Allow content to extend beyond initial body height */
+  overflow: visible;
   -webkit-font-smoothing: none;
   text-rendering: optimizeSpeed;
 }
 
-/* === Navigation Container === */
+/* === Layout === */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 .container {
   display: grid;
   grid-template-columns: repeat(4, 150px);
@@ -31,6 +44,48 @@ body {
   justify-content: center;
   margin-bottom: 20px;
   padding-top: 20px;
+}
+
+/* === Images === */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+.Pixelart {
+  position: relative;
+  width: fit-content;
+}
+
+.Pixelart img {
+  position: absolute;
+  bottom: 0px;
+  right: -510px;
+  scale: 300%;
+  transform-origin: bottom right;
+}
+
+/* === Navigation Buttons === */
+.button {
+  font-family: "DOSfont", sans-serif;
+  width: 150px;
+  height: 80px;
+  background-color: #ffffff;
+  border: 5px solid #3b77bc;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+}
+
+.button:hover {
+  background-color: #d3e5fa;
 }
 
 /* === Main Box (Welcome Section) === */
@@ -48,10 +103,14 @@ body {
   font-size: 15px;
 }
 
-/* === Smaller Box (Social Media Section) === */
+.Box h1,
+.Box h2 {
+  white-space: pre;
+}
+
+/* === Social Media Box === */
 .AnotherBox {
   display: grid;
-  margin: 150px auto;
   width: 550px;
   height: 80px;
   background-color: #ffffff;
@@ -59,167 +118,68 @@ body {
   border-radius: 10px;
   box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.338);
   text-align: center;
-  position: relative; /* Added for positioning context */
+  position: relative;
+  padding: 50px;
+  margin: 150px auto;
 }
 
-/* === General Image Styling === */
-img {
+.social-media {
+  width: 360px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  scale: 180%;
+  margin: 0 auto;
+}
+
+.social-link img {
+  width: 40px;
+  height: 40px;
+  position: static;
+  scale: 150%;
+}
+
+.social-link:hover {
+  scale: 110%;
+}
+
+/* === Chicken Button === */
+.chicken-button {
+  position: relative;
+  cursor: pointer;
+  width: 21px;
+  height: 17px;
+  background-image: url("Images/Chicken.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   image-rendering: -webkit-optimize-contrast;
-  /* For Edge 79+ */
   image-rendering: pixelated;
   -ms-interpolation-mode: nearest-neighbor;
+  scale: 5;
+  transform-origin: center;
+  bottom: -116px;
+  left: -180px;
+  z-index: 10;
 }
 
-/* === Pixel Art Image Styling (for tadc.png) === */
-.Pixelart {
-  position: relative;
-  width: fit-content;
+.chicken-button:hover {
+  background-image: url("Images/Chicken.png");
 }
 
-.Pixelart img {
-  position: absolute;
-  bottom: 0px;
-  right: -510px;
-  scale: 300%;
-  transform-origin: bottom right;
-}
-
-/* ===Custom Font=== */
-@font-face {
-  font-family: "DOSfont";
-  src: url("Minecraftia.ttf") format("TrueType");
-}
-
-/* === Navigation Buttons === */
-.button {
-  font-family: "DOSfont", sans-serif;
-  width: 150px;
-  height: 80px;
-  background-color: #ffffff;
-  border: 5px solid #3b77bc;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: black;
-}
-
-.button:hover {
-  background-color: #d3e5fa;
-}
-
-/* === Wrapper for All Content === */
-.content-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-/* === Popup Window Box === */
+/* === Popup Windows === */
 .window-box {
-  position: fixed;
-  width: 550px;
-  height: 400px;
   background-color: #ffffff;
   border: 5px solid #3b77bc;
   border-radius: 10px;
   box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.338);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   z-index: 1000;
-  -webkit-user-select: none;
-  /* Safari */
-  -moz-user-select: none;
-  /* Firefox */
-  -ms-user-select: none;
-  /* IE 10+/Edge */
   user-select: none;
-}
-
-#chickenWindow.window-box {
-  height: 534px;
-  width: 640px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
   -webkit-user-select: none;
-  /* Safari */
   -moz-user-select: none;
-  /* Firefox */
   -ms-user-select: none;
-  /* IE 10+/Edge */
-  user-select: none;
 }
 
-#chickenWindow .window-header {
-  padding: 10px;
-  height: 54px;
-  box-sizing: border-box;
-}
-
-#chickenWindow .window-content {
-  padding: 0;
-  max-height: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* === Image Viewer Window === */
-.window-box.image-viewer {
-  width: min(800px, 95vw);
-  height: min(658px, 92vh);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-sizing: border-box;
-  z-index: 2000;
-  padding: 0;
-}
-
-.image-viewer .window-header {
-  padding: 12px 14px;
-  height: 56px;
-  box-sizing: border-box;
-}
-
-.image-viewer .window-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0px;
-  width: 100%;
-  height: calc(100% - 56px);
-  max-height: none;
-  overflow: hidden;
-}
-
-.image-viewer #viewerImage,
-.image-viewer .window-content img {
-  position: static;
-  margin: auto;
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  transform: none !important;
-  scale: 1 !important;
-}
-
-.window-box.image-viewer.opening {
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
-}
-
-/* === Window Header (Draggable Bar) === */
 .window-header {
   padding: 10px;
   background-color: #3b77bc;
@@ -244,15 +204,43 @@ img {
   cursor: pointer;
 }
 
-/* === Window Content Area === */
 .window-content {
   padding: 20px;
-  max-height: 310px;
+  max-height: 411px;
   overflow-y: auto;
   overflow-x: hidden;
-  -webkit-scrollbar-width: thin;
-  /* For Chrome, Safari, and Opera */
   scrollbar-width: thin;
+}
+
+.window-content h2,
+.window-content h3,
+.window-content p {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+/* === Window Banner === */
+.window-banner {
+  position: absolute;
+  top: -12px;
+  left: 80%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
+
+.window-banner-image {
+  position: static;
+  scale: 300%;
+}
+
+/* === Window Icons === */
+.window-icon {
+  width: fit-content;
+  height: fit-content;
+  position: static;
+  scale: 300%;
 }
 
 /* === Scrollbar Styling === */
@@ -276,31 +264,42 @@ img {
   background-color: #d3e5fa;
 }
 
-/* === Text Wrapping === */
-.Box h1,
-.Box h2 {
-  white-space: pre;
+/* === Image Viewer Window === */
+.window-box.image-viewer {
+  width: min(800px, 95vw);
+  height: min(658px, 92vh);
+  z-index: 2000;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.window-content h2,
-.window-content h3,
-.window-content p {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+.window-box.image-viewer.opening {
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+}
+
+.image-viewer .window-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: 100%;
+  height: calc(100% - 49px);
+  max-height: none;
+  overflow: hidden;
+}
+
+.image-viewer #viewerImage,
+.image-viewer .window-content img {
+  position: static;
+  display: block;
+  margin: auto;
+  width: 100%;
+  height: auto;
   max-width: 100%;
-}
-
-/* === Dragging Class === */
-.dragging {
-  -webkit-user-select: none;
-  /* Safari */
-  -moz-user-select: none;
-  /* Firefox */
-  -ms-user-select: none;
-  /* IE 10+/Edge */
-  user-select: none;
-  cursor: grabbing !important;
+  max-height: 100%;
+  object-fit: contain;
+  transform: none !important;
+  scale: 1 !important;
 }
 
 /* === Portfolio Items === */
@@ -333,63 +332,19 @@ img {
   text-decoration: underline;
 }
 
-/* === Portfolio Images === */
 .portfolio-image img {
   position: static;
   width: 100%;
   height: auto;
-  scale: 100%;
   border-radius: 5px;
   box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.2);
   image-rendering: initial;
 }
 
-/* === Project Description Text === */
 .project-description {
   margin: 8px 0;
   font-size: 0.9em;
   line-height: 1.4;
-}
-
-/* === Social Media Section === */
-.social-media {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0px;
-}
-
-.social-link img {
-  width: 40px;
-  height: 40px;
-  position: static;
-  scale: 150%;
-}
-
-.social-link:hover {
-  scale: 110%;
-}
-
-/* === Window Icon === */
-.window-icon {
-  width: fit-content;
-  height: fit-content;
-  position: static;
-  scale: 300%;
-}
-
-/* === Window Banner === */
-.window-banner {
-  position: absolute;
-  top: -7px;
-  left: 80%;
-  transform: translateX(-50%);
-  z-index: 999;
-}
-
-.window-banner-image {
-  position: static;
-  scale: 300%;
 }
 
 /* === Gallery Images === */
@@ -402,209 +357,342 @@ img {
   box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* === Chicken Game Button === */
-.chicken-button {
-  position: relative; /* Changed from relative to absolute */
+/* === Dragging === */
+.dragging {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: grabbing !important;
+}
+
+/* === 404 Page === */
+.video-container {
+  position: relative;
+  border: 7px solid #3b77bc;
+  border-radius: 15px;
+  overflow: hidden;
+  max-width: 800px;
+  width: 90%;
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 0 15px black;
+}
+
+.video-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+#playButton {
+  position: absolute;
+  inset: 0;
+  background-color: #ffffff;
+  color: black;
+  border: none;
+  font-family: "DOSfont", sans-serif;
+  font-size: 2em;
   cursor: pointer;
-  width: 21px;
-  height: 17px;
-  background-image: url("Images/Chicken.gif");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: pixelated;
-  -ms-interpolation-mode: nearest-neighbor;
-  scale: 5;
-  transform-origin: center;
-  bottom: -116px; /* Position below the AnotherBox */
-  left: -180px; /* Position to the left of the AnotherBox */
+}
+
+#playButton:hover {
+  background-color: #d3e5fa;
+}
+
+/* ============================================
+   Media Queries — behavior driven by body classes
+   set by JS: body.mobile / body.tablet / body.desktop
+   To change breakpoints, edit MOBILE_MAX and TABLET_MAX in main.js
+   ============================================ */
+
+/* === Desktop === */
+body.desktop .window-box {
+  position: fixed;
+  width: 700px;
+  height: 500px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+body.desktop .chicken-button {
+  display: block;
+  scale: 6;
+  position: absolute;
+  bottom: 229px;
+  left: 90px;
+}
+
+body.desktop .window-header {
+  cursor: grab;
+}
+
+body.desktop .window-header:active {
+  cursor: grabbing;
+}
+
+/* === Tablet and Mobile shared — drawer behavior === */
+body.mobile .window-box,
+body.tablet .window-box {
+  position: fixed;
+  bottom: -100vh;
+  left: 0;
+  right: 0;
+  top: auto;
+  width: 100%;
+  max-width: 100%;
+  height: 85vh;
+  max-height: 85vh;
+  margin: 0;
+  border-radius: 16px 16px 0 0;
+  transform: none;
+  transition: bottom 0.4s ease-in-out;
+  overflow-y: auto;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+body.mobile .window-box.active,
+body.tablet .window-box.active {
+  bottom: 0;
+}
+
+body.mobile .window-header,
+body.tablet .window-header {
+  cursor: default;
+  position: sticky;
+  top: 0;
   z-index: 10;
-  /* Removed: margin-bottom, margin-left, margin-top */
 }
 
-.chicken-button:hover {
-  background-image: url("Images/Chicken.png");
+body.mobile .window-content,
+body.tablet .window-content {
+  max-height: none;
+  height: auto;
+  padding: 15px;
+  overflow-y: visible;
 }
 
-/* === code for tablet version of website === */
-@media screen and (max-width: 768px) {
-  .container {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 5px;
-    padding-top: 20px;
-    margin-bottom: 10px;
-  }
-
-  .Box {
-    padding: 10px;
-  }
-
-  .Box h1 {
-    font-size: 3em;
-  }
-
-  .Box h2 {
-    font-size: 1.8em;
-  }
-
-  .Pixelart img {
-    scale: 3;
-    bottom: -53px;
-  }
-
-  .chicken-button {
-    scale: 5;
-    bottom: -46px;
-    left: -150px;
-  }
-
-  .AnotherBox {
-    margin-top: 80px;
-    position: absolute 1px;
-  }
-
-  .window-box {
-    width: 90vw;
-    height: 80vh;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .window-content {
-    font-size: 0.9em;
-  }
-
-  .portfolio-item {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .portfolio-image,
-  .gallery-image {
-    margin-top: 10px;
-  }
+body.mobile .window-banner,
+body.tablet .window-banner {
+  display: none;
 }
 
-/* === Code for phone view of website === */
-@media screen and (max-width: 480px) {
-  .container {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 3px;
-    padding-top: 20px;
-    margin-bottom: 1px;
-    width: 95%;
-    box-sizing: border-box;
-    font-size: 22px;
-  }
-
-  .Box {
-    width: 90%;
-    height: 300px;
-    padding: 5px;
-    margin: 2px auto;
-  }
-  .Box h1 {
-    font-size: 1.8em;
-  }
-
-  .Box h2 {
-    font-size: 1em;
-  }
-
-  .Pixelart img {
-    position: absolute;
-    scale: 2.5;
-    bottom: -53px;
-    left: 300px;
-  }
-
-  .chicken-button {
-    scale: 4;
-    bottom: -54px;
-    left: -110px;
-  }
-
-  .AnotherBox {
-    margin-top: 80px;
-    position: absolute 1px;
-    width: 95%;
-  }
-  .button {
-    width: auto;
-    padding: 5px 8px;
-    font-size: 0.7em;
-    height: 40px;
-    border-width: 4px;
-  }
-
-  .window-box {
-    width: 90vw;
-    height: 80vh;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .window-content {
-    font-size: 0.9em;
-  }
-
-  .portfolio-item {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .portfolio-image,
-  .gallery-image {
-    margin-top: 10px;
-  }
+body.mobile .window-content h2,
+body.mobile .window-content h3,
+body.mobile .window-content h4,
+body.mobile .window-content p,
+body.mobile .window-content a,
+body.tablet .window-content h2,
+body.tablet .window-content h3,
+body.tablet .window-content h4,
+body.tablet .window-content p,
+body.tablet .window-content a {
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  -webkit-font-smoothing: none;
+  text-rendering: optimizeSpeed;
+  display: inline-block;
 }
 
-/* Mobile/Tablet slide-up panel styles */
-@media (max-width: 1024px) {
-  .window-box {
-    position: fixed !important;
-    bottom: -100% !important;
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    height: 90vh !important;
-    max-height: 90vh !important;
-    margin: 0 !important;
-    border-radius: 16px 16px 0 0 !important;
-    transform: none !important;
-    transition: bottom 0.4s ease-in-out !important;
-    overflow-y: auto !important;
-    z-index: 1000 !important;
-  }
-
-  .window-box.active {
-    bottom: 0 !important;
-  }
-
-  .window-header {
-    cursor: default !important;
-  }
+body.mobile .window-box *,
+body.tablet .window-box * {
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-/* Desktop styles remain unchanged */
-@media (min-width: 1025px) {
-  .window-box {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
+/* === Tablet only — side by side portfolio, bigger buttons === */
+body.tablet .container {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
 
-  .window-header {
-    cursor: grab;
-  }
+body.tablet .button {
+  width: 100%;
+  height: 70px;
+  font-size: 0.85em;
+}
 
-  .window-header:active {
-    cursor: grabbing;
-  }
+body.tablet .Box {
+  width: 90%;
+  padding: 10px;
+}
+
+body.tablet .Box h1 {
+  font-size: 3em;
+}
+body.tablet .Box h2 {
+  font-size: 1.8em;
+}
+
+body.tablet .Pixelart {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: fit-content;
+}
+
+body.tablet .Pixelart img {
+  position: static;
+  scale: 300%;
+  transform-origin: bottom right;
+  bottom: auto;
+  right: auto;
+}
+
+body.tablet .AnotherBox {
+  width: calc(100% - 40px);
+  height: auto;
+  padding: 20px;
+  margin: 50px auto;
+  box-sizing: border-box;
+}
+
+body.tablet .social-media {
+  width: 60%;
+  scale: 1.3;
+  justify-content: space-around;
+}
+
+body.tablet .social-link img {
+  scale: 1;
+  width: 28px;
+  height: 28px;
+}
+
+body.tablet .chicken-button {
+  display: block;
+  scale: 4;
+  position: absolute;
+  bottom: 96px;
+  left: 40px;
+}
+
+body.tablet .portfolio-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+body.tablet .portfolio-info {
+  order: unset;
+}
+
+body.tablet .portfolio-image,
+body.tablet .gallery-image {
+  order: unset;
+  width: unset;
+  margin-top: 0;
+}
+
+body.tablet .portfolio-image img,
+body.tablet .gallery-image img {
+  width: 100%;
+  height: auto;
+  scale: 1;
+  image-rendering: initial;
+}
+
+/* === Mobile only — stacked portfolio, smaller everything === */
+body.mobile .container {
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  gap: 5px;
+}
+
+body.mobile .button {
+  width: 100%;
+  min-width: 0;
+  font-size: 0.85em;
+  padding: 0px;
+  height: 60px;
+  border-width: 4px;
+}
+
+body.mobile .Box {
+  width: 90%;
+  padding: 1px;
+}
+
+body.mobile .Box h1,
+body.mobile .Box h2 {
+  white-space: normal;
+  word-break: break-word;
+  font-size: 1.5em;
+}
+
+body.mobile .Pixelart {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: fit-content;
+}
+
+body.mobile .Pixelart img {
+  position: static;
+  scale: 300%;
+  transform-origin: bottom right;
+  bottom: auto;
+  right: auto;
+}
+
+body.mobile .AnotherBox {
+  width: calc(100% - 20px);
+  padding: 15px;
+  height: auto;
+  margin: 50px auto;
+  box-sizing: border-box;
+}
+
+body.mobile .social-media {
+  width: 60%;
+  scale: 1.75;
+  gap: 0;
+  justify-content: space-around;
+}
+
+body.mobile .social-link img {
+  scale: 1;
+  width: 35px;
+  height: 35px;
+}
+
+body.mobile .chicken-button {
+  display: block;
+  scale: 4;
+  position: absolute;
+  bottom: 96px;
+  left: 30px;
+}
+
+body.mobile .portfolio-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+body.mobile .portfolio-info {
+  order: 1;
+}
+
+body.mobile .portfolio-image,
+body.mobile .gallery-image {
+  order: 2;
+  width: 100%;
+  margin-top: 5px;
+}
+
+body.mobile .portfolio-image img,
+body.mobile .gallery-image img {
+  width: 100%;
+  height: auto;
+  scale: 1;
 }

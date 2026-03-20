@@ -1,1 +1,1 @@
-https://sonicblaston62.github.io/WelcomeToBase/
+https://sonicblaston.netlify.app

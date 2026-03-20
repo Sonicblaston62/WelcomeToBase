@@ -1,103 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>404 - Page Not Found</title>
-    <link rel="stylesheet" href="stylesheet.css"> <!-- Links to external CSS file -->
+    <link rel="stylesheet" href="stylesheet.css" />
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Video Container */
-        .video-container {
-            position: relative;
-            border: 7px solid #3B77BC;
-            border-radius: 15px;
-            overflow: hidden;
-            max-width: 800px;
-            width: 90%;
-            aspect-ratio: 16 / 9;
-            box-shadow: 0 0 15px black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .video-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Play Button */
-        .play-button {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #ffffff;
-            color: black;
-            border: 7px solid #3B77BC;
-            border-radius: 5px;
-            font-family: "DOSfont", sans-serif;
-            font-size: 2em;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            line-height: 1.2;
-            z-index: 10;
-            box-sizing: border-box;
-        }
-
-        .play-button:hover {
-            background-color: #d3e5fa;
-
-        }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="video-container">
-        <iframe id="rickrollPlayer"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&modestbranding=1&rel=0&start=43&enablejsapi=1"
-            title="Huh. How did you end up here? And how can you even read this?"
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe
+        id="rickrollPlayer"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1&controls=0&rel=0&start=43"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+      ></iframe>
 
-        <button id="playButton" class="play-button">404 Page not found - Click to Continue</button>
+      <button id="playButton">404 Page not found - Click to Continue</button>
     </div>
 
     <script>
-        var player;
-        // YouTube IFrame Player API Ready
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('rickrollPlayer', {});
-        }
+      // Load YouTube API
+      var tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.head.appendChild(tag);
 
-        // Play Button Event Listener
-        document.getElementById('playButton').addEventListener('click', function () {
-            if (player) {
-                player.playVideo();
-                this.style.display = 'none';
-            }
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player("rickrollPlayer");
+      }
+
+      document
+        .getElementById("playButton")
+        .addEventListener("click", function () {
+          player.playVideo();
+          this.style.display = "none";
         });
-
-        // Load YouTube IFrame Player API
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     </script>
-</body>
-
+  </body>
 </html>
