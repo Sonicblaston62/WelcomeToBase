@@ -21,6 +21,7 @@
         <h1>Welcome to Base!</h1>
         <h2>I am Kevin and this is my site</h2>
         <div class="Pixelart">
+          <!-- GIF only, no modern format available — no picture needed -->
           <img src="Images/SonicblastonNESWaveanimated.gif" alt="Blaston" />
         </div>
       </div>
@@ -43,19 +44,32 @@
             href="https://discordapp.com/users/1275781404361228352"
             class="social-link"
           >
-            <img src="Images/DicordIcon.png" alt="Discord" />
+            <!-- PNG icon with webp modern version -->
+            <picture>
+              <source srcset="Images/DicordIcon.webp" type="image/webp" />
+              <img src="fallbacks/DicordIcon.png" alt="Discord" />
+            </picture>
           </a>
           <a href="github.com/sonicblaston62" class="social-link">
-            <img src="Images/github.png" alt="GitHub" />
+            <picture>
+              <source srcset="Images/github.webp" type="image/webp" />
+              <img src="fallbacks/github.png" alt="GitHub" />
+            </picture>
           </a>
           <a
             href="https://forum.makecode.com/u/sonicblaston/summary"
             class="social-link"
           >
-            <img src="Images/logo.png" alt="Makecode Forum" />
+            <picture>
+              <source srcset="Images/logo.webp" type="image/webp" />
+              <img src="fallbacks/logo.png" alt="Makecode Forum" />
+            </picture>
           </a>
           <a href="https://www.youtube.com/@Sonicblaston" class="social-link">
-            <img src="Images/YouTubeIcon.png" alt="YouTube" />
+            <picture>
+              <source srcset="Images/YoutubeIcon.webp" type="image/webp" />
+              <img src="fallbacks/YouTubeIcon.png" alt="YouTube" />
+            </picture>
           </a>
         </div>
       </div>
@@ -64,11 +78,14 @@
     <!-- Portfolio Window -->
     <div id="portfolioWindow" class="window-box" style="display: none">
       <div class="window-banner">
-        <img
-          src="Images/SonicblastonNES (2).png"
-          alt="Sonicblaston"
-          class="window-banner-image"
-        />
+        <picture>
+          <source srcset="Images/SonicblastonNES (2).webp" type="image/webp" />
+          <img
+            src="fallbacks/SonicblastonNES (2).png"
+            alt="Sonicblaston"
+            class="window-banner-image"
+          />
+        </picture>
       </div>
 
       <div class="window-header">
@@ -94,7 +111,12 @@
           </div>
           <div class="portfolio-image">
             <div style="pointer-events: none">
-              <img src="Images/MinecraftSite.avif" alt="Project 1" />
+              <!-- Has avif AND webp in Images/, jpg fallback -->
+              <picture>
+                <source srcset="Images/MinecraftSite.avif" type="image/avif" />
+                <source srcset="Images/MinecraftSite.webp" type="image/webp" />
+                <img src="fallbacks/MinecraftSite.jpg" alt="Project 1" />
+              </picture>
             </div>
           </div>
         </div>
@@ -112,10 +134,16 @@
           </div>
           <div class="portfolio-image">
             <div style="pointer-events: none">
-              <img
-                src="Images/Super_Mario_Arcade.webp"
-                alt="Super Mario Arcade"
-              />
+              <picture>
+                <source
+                  srcset="Images/Super_Mario_Arcade.webp"
+                  type="image/webp"
+                />
+                <img
+                  src="fallbacks/Super_Mario_Arcade.png"
+                  alt="Super Mario Arcade"
+                />
+              </picture>
             </div>
           </div>
         </div>
@@ -126,11 +154,14 @@
     <!-- About Window -->
     <div id="aboutWindow" class="window-box" style="display: none">
       <div class="window-banner">
-        <img
-          src="Images/SonicblastonNES (2).png"
-          alt="Sonic blast"
-          class="window-banner-image"
-        />
+        <picture>
+          <source srcset="Images/SonicblastonNES (2).webp" type="image/webp" />
+          <img
+            src="fallbacks/SonicblastonNES (2).png"
+            alt="Sonic blast"
+            class="window-banner-image"
+          />
+        </picture>
       </div>
 
       <div class="window-header">
@@ -158,11 +189,14 @@
     <!-- Art Window -->
     <div id="artWindow" class="window-box" style="display: none">
       <div class="window-banner">
-        <img
-          src="Images/SonicblastonNES (2).png"
-          alt="Sonicblaston"
-          class="window-banner-image"
-        />
+        <picture>
+          <source srcset="Images/SonicblastonNES (2).webp" type="image/webp" />
+          <img
+            src="fallbacks/SonicblastonNES (2).png"
+            alt="Sonicblaston"
+            class="window-banner-image"
+          />
+        </picture>
       </div>
 
       <div class="window-header">
@@ -184,22 +218,17 @@
             </h4>
           </div>
           <div class="gallery-image">
-            <img
-              src="Images/Michael_View_Portrait.png"
-              alt="A"
-              cowboylike
-              character
-              with
-              a
-              leather
-              hat,
-              brown
-              hoodied
-              jacket
-              and
-              blue
-              shirt
-            />
+            <!-- Fixed broken alt text — all those stray words removed -->
+            <picture>
+              <source
+                srcset="Images/Michael_View_Portrait.webp"
+                type="image/webp"
+              />
+              <img
+                src="fallbacks/Michael_View_Portrait.png"
+                alt="A cowboy-like character with a leather hat, brown hooded jacket and blue shirt"
+              />
+            </picture>
           </div>
         </div>
 
@@ -212,7 +241,10 @@
             </h4>
           </div>
           <div class="gallery-image">
-            <img src="Images/SonicblastonNES1.png" alt="Project 2" />
+            <picture>
+              <source srcset="Images/SonicblastonNES1.webp" type="image/webp" />
+              <img src="fallbacks/SonicblastonNES1.png" alt="Blaston" />
+            </picture>
           </div>
         </div>
 
@@ -225,11 +257,14 @@
             </h4>
           </div>
           <div class="gallery-image">
-            <img
-              src="Images/TADC.png"
-              alt="Project 2"
-              style="image-rendering: initial"
-            />
+            <picture>
+              <source srcset="Images/TADC.webp" type="image/webp" />
+              <img
+                src="fallbacks/TADC.png"
+                alt="The Amazing Digital Circus reimagined as an MS-DOS EGA game"
+                style="image-rendering: initial"
+              />
+            </picture>
           </div>
         </div>
 
@@ -238,14 +273,17 @@
             <h3>The Xbox 360</h3>
             <h4 class="project-description">
               An Xbox 360 and it's controller. The peak of gaming. Loved those
-              nigths playing Halo with friends until the sun came up.
+              nights playing Halo with friends until the sun came up.
             </h4>
           </div>
           <div class="gallery-image">
-            <img
-              src="Images/Xbox360.png"
-              alt="An Xbox 360 and the Xbox 360 controller"
-            />
+            <picture>
+              <source srcset="Images/Xbox360.webp" type="image/webp" />
+              <img
+                src="fallbacks/Xbox360.png"
+                alt="An Xbox 360 and the Xbox 360 controller"
+              />
+            </picture>
           </div>
         </div>
 
@@ -258,10 +296,13 @@
             </h4>
           </div>
           <div class="gallery-image">
-            <img
-              src="Images/Ralsei.png"
-              alt="A colorful goat character with a pink scarf and plushy like looks"
-            />
+            <picture>
+              <source srcset="Images/Ralsei.webp" type="image/webp" />
+              <img
+                src="fallbacks/Ralsei.png"
+                alt="A colorful goat character with a pink scarf and plushy like looks"
+              />
+            </picture>
           </div>
         </div>
       </div>
@@ -271,11 +312,14 @@
     <!-- Another Window -->
     <div id="anotherWindow" class="window-box" style="display: none">
       <div class="window-banner">
-        <img
-          src="Images/SonicblastonNES (2).png"
-          alt="Sonic blast"
-          class="window-banner-image"
-        />
+        <picture>
+          <source srcset="Images/SonicblastonNES (2).webp" type="image/webp" />
+          <img
+            src="fallbacks/SonicblastonNES (2).png"
+            alt="Sonic blast"
+            class="window-banner-image"
+          />
+        </picture>
       </div>
 
       <div class="window-header">
@@ -298,11 +342,14 @@
       style="display: none"
     >
       <div class="window-banner">
-        <img
-          src="Images/SonicblastonNES (2).png"
-          alt="A character called Sonicblaston"
-          class="window-banner-image"
-        />
+        <picture>
+          <source srcset="Images/SonicblastonNES (2).webp" type="image/webp" />
+          <img
+            src="fallbacks/SonicblastonNES (2).png"
+            alt="A character called Sonicblaston"
+            class="window-banner-image"
+          />
+        </picture>
       </div>
 
       <div class="window-header">
