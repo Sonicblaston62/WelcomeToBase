@@ -172,7 +172,15 @@ img {
 }
 
 .chicken-button:hover {
-  background-image: url("Images/Chicken.png");
+  background-image: url("fallbacks/Bliss.png"); /* Fallback */
+  background-image: -webkit-image-set(
+    url("Images/Chicken.webp") type("image/webp"),
+    url("fallbacks/Chicken.png") type("fallbacks/png")
+  );
+  background-image: image-set(
+    url("Images/Chicken.webp") type("image/webp"),
+    url("fallbacks/Chicken.png") type("fallbacks/png")
+  );
 }
 
 /* === Popup Windows === */
